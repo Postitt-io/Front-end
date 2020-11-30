@@ -14,6 +14,7 @@ module.exports = {
       },
       colors: {
         'accent-1': '#333',
+        'button-blue': '#604E91',
       },
     },
   },

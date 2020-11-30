@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const links = [
   { href: 'register', label: 'Register' },
@@ -11,15 +12,16 @@ export default function Nav() {
       <ul className="flex items-center justify-between p-8">
         <li>
           <Link href="/">
-            <a className="text-blue-500 no-underline text-accent-1 dark:text-blue-300">
-              Home
-            </a>
+            <Image src="/Logo.svg" width={250} height={66} />
           </Link>
         </li>
         <ul className="flex items-center justify-between space-x-4">
           {links.map(({ href, label }) => (
             <li key={`${href}${label}`}>
-              <a href={href} className="no-underline btn-blue">
+              <a
+                href={href}
+                className="no-underline font-semibold btn-postitt"
+              >
                 {label}
               </a>
             </li>

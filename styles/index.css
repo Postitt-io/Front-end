@@ -10,12 +10,16 @@
 
 html,
 body {
-  @apply bg-gray-50 dark:bg-gray-900;
+  @apply bg-white dark:bg-gray-900;
 }
 
 /* Write your own custom component styles here */
 .btn-blue {
   @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+}
+
+.btn-postitt {
+  @apply px-4 py-2 font-bold text-white bg-button-blue rounded hover:bg-blue-900 transition duration-150 ease-in-out;
 }
 
 /* Start purging... */
