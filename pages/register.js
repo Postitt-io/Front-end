@@ -12,7 +12,7 @@ export default function RegisterPage() {
       <div className="container mx-auto flex items-center justify-center h-full">
         <section className="py-20">
           <h1 className="font-semibold text-5xl text-gray-900 dark:text-gray-100">
-            Sign Up to Postitt
+            Sign Up to <u>Post</u>itt
           </h1>
           <p className="clear-left text-lg font-light py-3 text-gray-600">
             Already have an account?{' '}
