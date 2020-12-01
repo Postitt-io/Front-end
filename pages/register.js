@@ -37,6 +37,7 @@ export default function RegisterPage() {
             />
             <div className="relative flex w-full flex-wrap items-stretch mb-3">
               <input
+                id="password"
                 type="password"
                 name="password"
                 className="px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-200 flex w-full focus:outline-none focus:shadow-outline"
