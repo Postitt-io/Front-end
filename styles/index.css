@@ -22,6 +22,10 @@ body {
   @apply px-4 py-2 font-bold text-white bg-button-blue rounded hover:bg-opacity-80 transition duration-150 ease-in-out;
 }
 
+.input-postitt {
+  @apply px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-200 flex w-full focus:outline-none focus:shadow-md transition duration-150 ease-in-out;
+}
+
 /* Start purging... */
 @import 'tailwindcss/utilities';
 /* Stop purging. */

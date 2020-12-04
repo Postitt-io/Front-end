@@ -25,14 +25,14 @@ export default function RegisterPage() {
               id="username"
               type="username"
               name="username"
-              className="px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-200 flex w-full my-4 focus:outline-none focus:shadow-outline"
+              className="my-4 input-postitt"
               placeholder="Username"
             />
             <input
               id="email"
               type="email"
               name="email"
-              className="px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-200 flex w-full my-4 focus:outline-none focus:shadow-outline"
+              className="my-4 input-postitt"
               placeholder="Email"
             />
             <div className="relative flex w-full flex-wrap items-stretch mb-3">
@@ -40,7 +40,7 @@ export default function RegisterPage() {
                 id="password"
                 type="password"
                 name="password"
-                className="px-4 py-2 text-sm sm:text-base rounded-lg border border-gray-200 flex w-full focus:outline-none focus:shadow-outline"
+                className="input-postitt"
                 placeholder="Password"
               />
               <span className="z-10 h-full leading-snug font-normal text-center text-gray-400 absolute bg-transparent text-base items-center justify-center w-8 right-0 pr-3 py-3">
