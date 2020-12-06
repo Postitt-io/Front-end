@@ -55,7 +55,18 @@ export default function RegisterPage() {
                 <i className="far fa-eye-slash"></i>
               </span>
             </div>
-            <button className="w-full btn-postitt">
+            <input
+              type="checkbox"
+              className="mr-1 cursor-pointer"
+              id="agreement"
+            />
+            <label
+              htmlFor="agreement"
+              className="text-xs font-light text-gray-600 cursor-pointer clear-left dark:text-gray-100"
+            >
+              I agree to get emails about cool stuff on Postitt
+            </label>
+            <button className="w-full my-3 btn-postitt">
               Create Account
             </button>
           </form>
