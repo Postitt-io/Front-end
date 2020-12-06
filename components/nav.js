@@ -6,14 +6,16 @@ const links = [
   { href: 'login', label: 'Login' },
 ];
 
+// TODO Change image src from LogoDark to LogoLight when light mode is detected
+
 export default function Nav() {
   return (
-    <nav className="border-b-2">
+    <nav className="border-b-2 dark:bg-gray-800">
       <ul className="flex items-center justify-between p-3">
         <li>
           <Link href="/">
             <a>
-              <Image src="/Logo.svg" width={250} height={66} />
+              <Image src="/LogoDark.svg" width={250} height={66} />
             </a>
           </Link>
         </li>

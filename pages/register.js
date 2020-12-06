@@ -12,7 +12,7 @@ export default function RegisterPage() {
           <h1 className="font-semibold text-5xl text-gray-900 dark:text-gray-100">
             Sign Up to <u>Post</u>itt
           </h1>
-          <p className="clear-left text-lg font-light py-3 text-gray-600">
+          <p className="clear-left text-lg font-light py-3 text-gray-600 dark:text-gray-100">
             Already have an account?{' '}
             <a href="login" className="text-blue-400">
               Log In
