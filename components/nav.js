@@ -1,25 +1,26 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const links = [
-  { href: 'https://github.com/vercel/next.js', label: 'GitHub' },
-  { href: 'https://nextjs.org/docs', label: 'Docs' },
+  { href: 'register', label: 'Register' },
+  { href: 'login', label: 'Login' },
 ];
 
 export default function Nav() {
   return (
-    <nav>
-      <ul className="flex items-center justify-between p-8">
+    <nav className="border-b-2">
+      <ul className="flex items-center justify-between p-3">
         <li>
           <Link href="/">
-            <a className="text-blue-500 no-underline text-accent-1 dark:text-blue-300">
-              Home
+            <a>
+              <Image src="/Logo.svg" width={250} height={66} />
             </a>
           </Link>
         </li>
         <ul className="flex items-center justify-between space-x-4">
           {links.map(({ href, label }) => (
             <li key={`${href}${label}`}>
-              <a href={href} className="no-underline btn-blue">
+              <a href={href} className="btn-postitt">
                 {label}
               </a>
             </li>

@@ -10,12 +10,20 @@
 
 html,
 body {
-  @apply bg-gray-50 dark:bg-gray-900;
+  @apply bg-white dark:bg-gray-900;
 }
 
 /* Write your own custom component styles here */
 .btn-blue {
   @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
+}
+
+.btn-postitt {
+  @apply px-4 py-2 rounded-lg font-semibold text-lg no-underline text-white group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-md transition duration-150 ease-in-out;
+}
+
+.input-postitt {
+  @apply px-4 py-2 text-sm md:text-lg rounded-lg border border-gray-200 flex w-full focus:outline-none focus:shadow-md transition duration-150 ease-in-out;
 }
 
 /* Start purging... */
