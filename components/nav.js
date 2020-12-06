@@ -8,11 +8,13 @@ const links = [
 
 export default function Nav() {
   return (
-    <nav>
-      <ul className="flex items-center justify-between p-8">
+    <nav className="border-b-2">
+      <ul className="flex items-center justify-between p-3">
         <li>
           <Link href="/">
-            <Image src="/Logo.svg" width={250} height={66} />
+            <a>
+              <Image src="/Logo.svg" width={250} height={66} />
+            </a>
           </Link>
         </li>
         <ul className="flex items-center justify-between space-x-4">
