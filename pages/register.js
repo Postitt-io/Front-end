@@ -1,9 +1,7 @@
 import Nav from '../components/nav';
 
 import '@fortawesome/fontawesome-free/js/fontawesome';
-import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
-import '@fortawesome/fontawesome-free/js/brands';
 
 export default function RegisterPage() {
   return (
@@ -35,7 +33,7 @@ export default function RegisterPage() {
               className="my-4 input-postitt"
               placeholder="Email"
             />
-            <div className="relative flex w-full flex-wrap items-stretch mb-3">
+            <div className="relative flex w-full flex-wrap items-stretch my-4">
               <input
                 id="password"
                 type="password"

@@ -2,9 +2,7 @@
 import Nav from '../components/nav';
 
 import '@fortawesome/fontawesome-free/js/fontawesome';
-import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
-import '@fortawesome/fontawesome-free/js/brands';
 
 export default function LoginPage() {
   return (
@@ -29,7 +27,7 @@ export default function LoginPage() {
               className="my-4 input-postitt"
               placeholder="Username"
             />
-            <div className="relative flex w-full flex-wrap items-stretch mb-3">
+            <div className="relative flex w-full flex-wrap items-stretch my-4">
               <input
                 id="password"
                 type="password"
