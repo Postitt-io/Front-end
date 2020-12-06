@@ -14,16 +14,13 @@ body {
 }
 
 /* Write your own custom component styles here */
-.btn-blue {
-  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
-}
 
 .btn-postitt {
-  @apply px-4 py-2 rounded-lg font-semibold text-lg no-underline text-white group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-md transition duration-150 ease-in-out;
+  @apply px-4 py-2 text-lg font-semibold text-white no-underline transition duration-150 ease-in-out rounded-lg group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-md;
 }
 
 .input-postitt {
-  @apply px-4 py-2 text-sm md:text-lg rounded-lg border border-gray-200 flex w-full focus:outline-none focus:shadow-md transition duration-150 ease-in-out dark:text-gray-100 dark:bg-gray-600;
+  @apply flex w-full px-4 py-2 text-sm transition duration-150 ease-in-out border border-gray-200 rounded-lg md:text-lg focus:outline-none focus:shadow-md dark:text-gray-100 dark:bg-gray-600;
 }
 
 /* Start purging... */
