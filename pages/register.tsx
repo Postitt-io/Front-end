@@ -17,7 +17,7 @@ export default function RegisterPage() {
 
   const router = useRouter();
 
-  const submitForm = async (event: FormEvent) => {
+  const submitForm = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     if (!agreement) {
       setErrors({
@@ -120,7 +120,7 @@ export default function RegisterPage() {
             <small className="block font-medium text-red-600">
               {errors.agreement}
             </small>
-            <button className="w-full my-3 btn-postitt">
+            <button type="submit" className="w-full my-3 btn-postitt">
               Create Account
             </button>
           </form>
