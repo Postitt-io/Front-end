@@ -1,0 +1,36 @@
+import classNames from 'classNames';
+
+interface InputGroupProps {
+  className?: string;
+  type: string;
+  placeholder: string;
+  value: string;
+  error: string | undefined;
+  setValue: (str: string) => void;
+}
+
+const InputGroup: React.FC<InputGroupProps> = ({
+  className,
+  type,
+  placeholder,
+  value,
+  error,
+  setValue,
+}) => {
+  return (
+    <div className={className}>
+      <input
+        type={type}
+        className={classNames('input-postitt', {
+          'border-red-500': error,
+        })}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <small className="font-medium text-red-600">{error}</small>
+    </div>
+  );
+};
+
+export default InputGroup;

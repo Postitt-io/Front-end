@@ -10,18 +10,16 @@ const links = [
 
 export default function Nav() {
   return (
-    <nav className="border-b-2 dark:bg-gray-800">
+    <nav className="bg-gray-200 border-b-2 dark:border-gray-200 dark:bg-gray-800">
       <ul className="flex items-center justify-between p-3">
-        <li>
-          <Link href="/">
-            <Image
-              src="/LogoDark.svg"
-              width={250}
-              height={66}
-              className="cursor-pointer"
-            />
-          </Link>
-        </li>
+        <Link href="/">
+          <Image
+            src="/LogoDark.svg"
+            width={250}
+            height={66}
+            className="cursor-pointer"
+          />
+        </Link>
         <ul className="flex items-center justify-between space-x-4">
           {links.map(({ href, label }) => (
             <li key={`${href}${label}`}>
