@@ -32,7 +32,7 @@ export default function RegisterPage() {
         email,
         password,
       });
-
+      console.log('posted ', username, ', ', email);
       router.push('/login');
     } catch (err) {
       console.log(err);
