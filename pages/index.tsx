@@ -42,25 +42,29 @@ export default function IndexPage({ posts }) {
 
               <div className="w-full p-2">
                 <div className="flex items-center">
+                  {/* Sub  Icon */}
                   <Link href={`/p/${post.subName}`}>
-                    <Fragment>
-                      <img
-                        src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
-                        className="w-6 h-6 mr-1 rounded-full cursor-pointer"
-                      />
-                      <a className="text-xs font-semibold cursor-pointer hover:underline">
-                        p/{post.subName}
-                      </a>
-                    </Fragment>
+                    <img
+                      src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                      className="w-6 h-6 mr-1 rounded-full cursor-pointer"
+                    />
+                  </Link>
+                  {/* Sub Name */}
+                  <Link href={`/p/${post.subName}`}>
+                    <a className="text-xs font-semibold cursor-pointer hover:underline">
+                      p/{post.subName}
+                    </a>
                   </Link>
                   <p className="text-xs text-gray-500">
                     <span className="mx-1">•</span>
                     Posted by
+                    {/* Username */}
                     <Link href={`/u/${post.username}`}>
                       <a className="mx-1 hover:underline">
                         u/{post.username}
                       </a>
                     </Link>
+                    {/* Timestamp */}
                     <Link href={post.url}>
                       <a className="mx-1 hover:underline">
                         {dayjs(post.createdAt).fromNow()}
@@ -68,29 +72,35 @@ export default function IndexPage({ posts }) {
                     </Link>
                   </p>
                 </div>
+                {/* Title */}
                 <Link href={post.url}>
                   <a className="my-1 text-lg font-semibold">
                     {post.title}
                   </a>
                 </Link>
+                {/* Body if applicable */}
                 {post.body && (
                   <p className="my-1 text-sm">{post.body}</p>
                 )}
                 <div className="flex">
+                  {/* Comments button */}
                   <Link href={post.url}>
                     <a>
                       <div className="px-1 py-1 mr-1 text-xs text-gray-400 rounded cursor-pointer hover:bg-gray-200">
                         <i className="mr-1 fas fa-comment-alt fa-xs"></i>
                         <span className="font-semibold">
+                          {/* TODO: count comments and display here */}
                           20 comments
                         </span>
                       </div>
                     </a>
                   </Link>
+                  {/* Share button */}
                   <div className="px-1 py-1 mr-1 text-xs text-gray-400 rounded cursor-pointer hover:bg-gray-200">
                     <i className="mr-1 fas fa-share fa-xs"></i>
                     <span className="font-semibold">Share</span>
                   </div>
+                  {/* Save button */}
                   <div className="px-1 py-1 mr-1 text-xs text-gray-400 rounded cursor-pointer hover:bg-gray-200">
                     <i className="mr-1 fas fa-bookmark fa-xs"></i>
                     <span className="font-semibold">Save</span>
