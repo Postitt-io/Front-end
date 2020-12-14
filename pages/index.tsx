@@ -1,19 +1,123 @@
-import Nav from '../components/nav';
 import Head from 'next/head';
+import Link from 'next/link';
+import { Fragment, useEffect, useState } from 'react';
+import Axios from 'axios';
 
-export default function IndexPage() {
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+// import { Post } from '../types';
+import { GetServerSideProps } from 'next';
+
+dayjs.extend(relativeTime);
+
+export default function IndexPage({ posts }) {
+  // CLIENT SIDE EXAMPLE RENDERING BELOW, PAGE USES SSR
+  // const [posts, setPosts] = useState<Post[]>([]);
+
+  // useEffect(() => {
+  //   Axios.get('/posts')
+  //     .then((res) => setPosts(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
   return (
     <div>
       <Head>
         <title>Postitt.io</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
-      <div className="py-20">
-        <h1 className="text-5xl text-center text-gray-700  dark:text-gray-100">
-          Next.js + Tailwind CSS 2.0
-        </h1>
+      <div className="container flex pt-4">
+        {/* Posts Feed */}
+        <div className="w-160">
+          {posts.map((post) => (
+            <div
+              key={post.identifier}
+              className="flex mb-4 bg-white rounded"
+            >
+              {/* Vote Section */}
+              <div className="w-10 text-center bg-gray-200 rounded-l">
+                <p>V</p>
+              </div>
+              {/* Post data section */}
+
+              <div className="w-full p-2">
+                <div className="flex items-center">
+                  <Link href={`/p/${post.subName}`}>
+                    <Fragment>
+                      <img
+                        src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                        className="w-6 h-6 mr-1 rounded-full cursor-pointer"
+                      />
+                      <a className="text-xs font-semibold cursor-pointer hover:underline">
+                        p/{post.subName}
+                      </a>
+                    </Fragment>
+                  </Link>
+                  <p className="text-xs text-gray-500">
+                    <span className="mx-1">•</span>
+                    Posted by
+                    <Link href={`/u/${post.username}`}>
+                      <a className="mx-1 hover:underline">
+                        u/{post.username}
+                      </a>
+                    </Link>
+                    <Link href={post.url}>
+                      <a className="mx-1 hover:underline">
+                        {dayjs(post.createdAt).fromNow()}
+                      </a>
+                    </Link>
+                  </p>
+                </div>
+                <Link href={post.url}>
+                  <a className="my-1 text-lg font-semibold">
+                    {post.title}
+                  </a>
+                </Link>
+                {post.body && (
+                  <p className="my-1 text-sm">{post.body}</p>
+                )}
+                <div className="flex">
+                  <Link href={post.url}>
+                    <a>
+                      <div className="px-1 py-1 mr-1 text-xs text-gray-400 rounded cursor-pointer hover:bg-gray-200">
+                        <i className="mr-1 fas fa-comment-alt fa-xs"></i>
+                        <span className="font-semibold">
+                          20 comments
+                        </span>
+                      </div>
+                    </a>
+                  </Link>
+                  <div className="px-1 py-1 mr-1 text-xs text-gray-400 rounded cursor-pointer hover:bg-gray-200">
+                    <i className="mr-1 fas fa-share fa-xs"></i>
+                    <span className="font-semibold">Share</span>
+                  </div>
+                  <div className="px-1 py-1 mr-1 text-xs text-gray-400 rounded cursor-pointer hover:bg-gray-200">
+                    <i className="mr-1 fas fa-bookmark fa-xs"></i>
+                    <span className="font-semibold">Save</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+      {/* Sidebar */}
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (
+  context,
+) => {
+  try {
+    const res = await Axios.get('/posts');
+
+    return { props: { posts: res.data } };
+  } catch (err) {
+    {
+      props: {
+        error: 'Something went wrong';
+      }
+    }
+  }
+};

@@ -1,6 +1,5 @@
 import { FormEvent, useState } from 'react';
 
-import Nav from '../components/nav';
 import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -27,12 +26,11 @@ export default function RegisterPage() {
       return;
     }
     try {
-      await Axios.post('/auth/register', {
+      await Axios.post('auth/register', {
         username,
         email,
         password,
       });
-      console.log('posted ', username, ', ', email);
       router.push('/login');
     } catch (err) {
       console.log(err);
@@ -44,9 +42,7 @@ export default function RegisterPage() {
     <div>
       <Head>
         <title>Register</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
       <div className="container flex items-center justify-center h-full mx-auto">
         <section className="py-20">
           <h1 className="text-5xl font-semibold text-gray-900 dark:text-gray-100">
@@ -99,11 +95,11 @@ export default function RegisterPage() {
               <span className="absolute right-0 z-10 items-center justify-center w-8 h-full py-3 pr-3 text-base font-normal leading-snug text-center text-gray-400 bg-transparent">
                 <i className="far fa-eye-slash"></i>
               </span>
-            </div> */}
-
+            </div>
             <small className="font-medium text-red-600">
-              {errors.password}
-            </small>
+              {errors.password} 
+             </small> */}
+
             <input
               type="checkbox"
               className="mr-1 cursor-pointer"
