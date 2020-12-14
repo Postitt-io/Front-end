@@ -11,15 +11,33 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Karla', ...defaultTheme.fontFamily.sans],
+        body: ['Karla'],
       },
       colors: {
         'accent-1': '#333',
         'button-blue': '#604E91',
       },
+      spacing: {
+        160: '40rem',
+      },
+      container: false,
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.container': {
+          width: '100',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          '@screen sm': { maxWidth: '640px' },
+          '@screen md': { maxWidth: '768px' },
+          '@screen lg': { maxWidth: '975px' },
+        },
+      });
+    },
+  ],
 };
