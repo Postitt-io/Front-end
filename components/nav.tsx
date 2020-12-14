@@ -22,7 +22,7 @@ const Nav: React.FC = () => {
           />
         </Link>
         {/* Search Input */}
-        <ul className="flex items-center mx-auto transition duration-150 bg-gray-100 border rounded  w-160 hover:border-button-blue hover:bg-white w-96">
+        <ul className="flex items-center mx-auto transition duration-150 bg-gray-100 border rounded w-160 hover:border-button-blue hover:bg-white">
           <i className="pl-4 pr-3 text-gray-500 fas fa-search"></i>
           <input
             type="text"
