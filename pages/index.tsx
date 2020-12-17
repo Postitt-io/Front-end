@@ -9,7 +9,7 @@ import { Post } from '../types';
 // import { GetServerSideProps } from 'next';
 
 import { useEffect, useState } from 'react';
-import PostCard from '../components/postCard';
+import PostCard from '../components/PostCard';
 
 dayjs.extend(relativeTime);
 
