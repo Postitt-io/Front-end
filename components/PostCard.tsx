@@ -35,7 +35,7 @@ export default function PostCard({
     username,
   },
 }: PostCardProps) {
-  const vote = async (value) => {
+  const vote = async (value: number) => {
     try {
       Axios.post('/misc/vote', {
         identifier,
@@ -48,7 +48,10 @@ export default function PostCard({
   };
 
   return (
-    <div key={identifier} className="flex mb-4 bg-white rounded">
+    <div
+      key={identifier}
+      className="flex mb-4 bg-white rounded shadow-inner"
+    >
       {/* Vote Section */}
       {/* Plus Button */}
       <div className="w-10 py-3 text-center bg-gray-200 rounded-l">
