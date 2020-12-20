@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Fragment } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 import { useAuthState, useAuthDispatch } from '../context/auth';
 import Axios from 'axios';
@@ -10,9 +10,7 @@ const links = [
   { href: 'login', label: 'Login' },
 ];
 
-// TODO: Change image src from LogoDark to LogoLight when light mode is detected
-
-const Nav: React.FC = () => {
+const Nav: React.FC = (): JSX.Element => {
   const { authenticated, loading } = useAuthState();
   const dispatch = useAuthDispatch();
 
@@ -25,13 +23,42 @@ const Nav: React.FC = () => {
       .catch((err) => console.log(err));
   };
 
+  const useMediaQuery = (query, whenTrue, whenFalse) => {
+    if (
+      typeof window === 'undefined' ||
+      typeof window.matchMedia === 'undefined'
+    )
+      return whenFalse;
+
+    const mediaQuery = window.matchMedia(query);
+    const [match, setMatch] = useState(!!mediaQuery.matches);
+
+    useEffect(() => {
+      const handler = () => setMatch(!!mediaQuery.matches);
+      mediaQuery.addListener(handler);
+      return () => mediaQuery.removeListener(handler);
+    }, []);
+
+    return match ? whenTrue : whenFalse;
+  };
+
+  const source = useMediaQuery(
+    '(prefers-color-scheme: light)',
+    '/LogoLight.svg',
+    '/LogoDark.svg',
+  );
+
+  console.log(source);
+
   return (
     <nav className="bg-gray-200 border-b-2 h-15 dark:border-gray-200 dark:bg-gray-800">
       {/* Logo and title */}
       <ul className="flex items-center justify-between p-3">
         <Link href="/">
           <Image
-            src="/LogoDark.svg"
+            // TODO: Change image src from LogoDark to LogoLight when light mode is detected
+            src={source}
+            // src="/LogoDark.svg"
             width={250}
             height={66}
             className="cursor-pointer"

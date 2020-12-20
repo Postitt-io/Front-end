@@ -30,7 +30,7 @@ export default function RegisterPage() {
       return;
     }
     try {
-      await Axios.post('auth/register', {
+      await Axios.post('/auth/register', {
         username,
         email,
         password,
