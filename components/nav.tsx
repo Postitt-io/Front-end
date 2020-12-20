@@ -23,7 +23,11 @@ const Nav: React.FC = (): JSX.Element => {
       .catch((err) => console.log(err));
   };
 
-  const useMediaQuery = (query, whenTrue, whenFalse) => {
+  const useMediaQuery = (
+    query: string,
+    whenTrue: string,
+    whenFalse: string,
+  ) => {
     if (
       typeof window === 'undefined' ||
       typeof window.matchMedia === 'undefined'
@@ -35,20 +39,18 @@ const Nav: React.FC = (): JSX.Element => {
 
     useEffect(() => {
       const handler = () => setMatch(!!mediaQuery.matches);
-      mediaQuery.addListener(handler);
-      return () => mediaQuery.removeListener(handler);
+      mediaQuery.addEventListener('change', handler);
+      return () => mediaQuery.removeEventListener('change', handler);
     }, []);
 
     return match ? whenTrue : whenFalse;
   };
 
   const source = useMediaQuery(
-    '(prefers-color-scheme: light)',
-    '/LogoLight.svg',
+    '(prefers-color-scheme: dark)',
     '/LogoDark.svg',
+    '/LogoLight.svg',
   );
-
-  console.log(source);
 
   return (
     <nav className="bg-gray-200 border-b-2 h-15 dark:border-gray-200 dark:bg-gray-800">
@@ -74,7 +76,7 @@ const Nav: React.FC = (): JSX.Element => {
           />
         </ul>
         {/* Auth button */}
-        <ul className="flex items-center justify-between space-x-4 ">
+        <ul className="flex items-center justify-between px-2 space-x-4 ">
           {!loading &&
             (authenticated ? (
               //show logout button
