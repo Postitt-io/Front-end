@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment } from 'react';
 
 import {
   useAuthState,
@@ -10,8 +10,8 @@ import {
 import Axios from 'axios';
 
 const links = [
-  { href: 'register', label: 'Register' },
-  { href: 'login', label: 'Login' },
+  { href: '/register', label: 'Register' },
+  { href: '/login', label: 'Login' },
 ];
 
 const Nav: React.FC = (): JSX.Element => {
