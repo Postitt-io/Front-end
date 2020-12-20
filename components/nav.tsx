@@ -2,7 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Fragment, useEffect, useState } from 'react';
 
-import { useAuthState, useAuthDispatch } from '../context/auth';
+import {
+  useAuthState,
+  useAuthDispatch,
+  useMediaQuery,
+} from '../context/auth';
 import Axios from 'axios';
 
 const links = [
@@ -23,30 +27,7 @@ const Nav: React.FC = (): JSX.Element => {
       .catch((err) => console.log(err));
   };
 
-  const useMediaQuery = (
-    query: string,
-    whenTrue: string,
-    whenFalse: string,
-  ) => {
-    if (
-      typeof window === 'undefined' ||
-      typeof window.matchMedia === 'undefined'
-    )
-      return whenFalse;
-
-    const mediaQuery = window.matchMedia(query);
-    const [match, setMatch] = useState(!!mediaQuery.matches);
-
-    useEffect(() => {
-      const handler = () => setMatch(!!mediaQuery.matches);
-      mediaQuery.addEventListener('change', handler);
-      return () => mediaQuery.removeEventListener('change', handler);
-    }, []);
-
-    return match ? whenTrue : whenFalse;
-  };
-
-  const source = useMediaQuery(
+  const logoSource = useMediaQuery(
     '(prefers-color-scheme: dark)',
     '/LogoDark.svg',
     '/LogoLight.svg',
@@ -58,9 +39,7 @@ const Nav: React.FC = (): JSX.Element => {
       <ul className="flex items-center justify-between p-3">
         <Link href="/">
           <Image
-            // TODO: Change image src from LogoDark to LogoLight when light mode is detected
-            src={source}
-            // src="/LogoDark.svg"
+            src={logoSource}
             width={250}
             height={66}
             className="cursor-pointer"
