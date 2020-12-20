@@ -1,14 +1,30 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Fragment } from 'react';
+
+import { useAuthState, useAuthDispatch } from '../context/auth';
+import Axios from 'axios';
 
 const links = [
   { href: 'register', label: 'Register' },
   { href: 'login', label: 'Login' },
 ];
 
-// TODO Change image src from LogoDark to LogoLight when light mode is detected
+// TODO: Change image src from LogoDark to LogoLight when light mode is detected
 
 const Nav: React.FC = () => {
+  const { authenticated, loading } = useAuthState();
+  const dispatch = useAuthDispatch();
+
+  const logout = () => {
+    Axios.get('/auth/logout')
+      .then(() => {
+        dispatch('LOGOUT');
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <nav className="bg-gray-200 border-b-2 h-15 dark:border-gray-200 dark:bg-gray-800">
       {/* Logo and title */}
@@ -32,15 +48,25 @@ const Nav: React.FC = () => {
         </ul>
         {/* Auth button */}
         <ul className="flex items-center justify-between space-x-4 ">
-          {links.map(({ href, label }) => (
-            <li key={`${href}${label}`}>
-              <Link href={href}>
-                <a className="w-32 py-1 text-center btn-postitt">
-                  {label}
-                </a>
-              </Link>
-            </li>
-          ))}
+          {!loading &&
+            (authenticated ? (
+              //show logout button
+              <button className="btn-postitt" onClick={logout}>
+                Logout
+              </button>
+            ) : (
+              <Fragment>
+                {links.map(({ href, label }) => (
+                  <li key={`${href}${label}`}>
+                    <Link href={href}>
+                      <a className="w-32 py-1 text-center btn-postitt">
+                        {label}
+                      </a>
+                    </Link>
+                  </li>
+                ))}
+              </Fragment>
+            ))}
         </ul>
       </ul>
     </nav>

@@ -5,6 +5,8 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Axios from 'axios';
 
+import { useAuthDispatch, useAuthState } from '../context/auth';
+
 import InputGroup from '../components/inputGroup';
 
 export default function LoginPage() {
@@ -12,16 +14,23 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<any>({});
 
+  const dispatch = useAuthDispatch();
+  const { authenticated } = useAuthState();
+
   const router = useRouter();
+  if (authenticated) router.push('/');
 
   const submitForm = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
 
     try {
-      await Axios.post('auth/login', {
+      const res = await Axios.post('auth/login', {
         username,
         password,
       });
+
+      dispatch('LOGIN', res.data);
+
       router.push('/');
     } catch (err) {
       console.log(err);
