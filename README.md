@@ -4,8 +4,6 @@ This is an example of how to set up the dev environment to work on Postitt.
 
 ## Setting up environment variables:
 
----
-
 At the moment, there is one `.env` file in the Back-End repository for the server, a list of them is below.
 
 | Syntax     | Value                   |
@@ -19,7 +17,7 @@ At the moment, there is one `.env` file in the Back-End repository for the serve
 
 ## Connecting the server to your local Postgres instance:
 
-in `Back-End/ormconfig.json` make sure you have the correct port, database, username and password for TypeORM to connect to Postgres.
+In `Back-End/ormconfig.json` make sure you have the correct port, database, username and password for TypeORM to connect to Postgres.
 
 ---
 
@@ -33,24 +31,35 @@ Postitt-io
 └──>Front-End
 │
 └──>Back-End
+
 ```
+
+---
+
+### _For the following commands, make sure your current directory is `$~\Postitt-io\Back-End`_
+
+---
 
 Run the migration on the database to set up the tables correctly:
 
 ```bash
-$~\Postitt-io\Back-End: npm run typeorm migration:run
+npm run typeorm migration:run
 ```
 
 If you'd like some sample data to work with, you can seed the database with:
 
-```bash
-$~\Postitt-io\Back-End: npm run seed
+```bash*
+npm run seed
 ```
 
 Then you can run the below command. This will start both the client and the server at the same time.
 
 ```bash
-$~\Postitt-io\Back-End: npm run dev
+npm run dev
 ```
+
+### Access the dev site at `localhost:3000`
+
+---
 
 ## Happy coding!
