@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app';
+import { SWRConfig } from 'swr';
 import Axios from 'axios';
 
 import { useRouter } from 'next/router';
@@ -16,10 +17,17 @@ function App({ Component, pageProps }: AppProps) {
   const authRoute = authRoutes.includes(pathname);
 
   return (
-    <AuthProvider>
-      {!authRoute && <Nav />}
-      <Component {...pageProps} />
-    </AuthProvider>
+    <SWRConfig
+      value={{
+        fetcher: (url) => Axios.get(url).then((res) => res.data),
+        dedupingInterval: 10000,
+      }}
+    >
+      <AuthProvider>
+        {!authRoute && <Nav />}
+        <Component {...pageProps} />
+      </AuthProvider>
+    </SWRConfig>
   );
 }
 export default App;

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import useSWR from 'swr';
 import Axios from 'axios';
 
 import dayjs from 'dayjs';
@@ -14,14 +15,7 @@ import PostCard from '../components/PostCard';
 dayjs.extend(relativeTime);
 
 export default function IndexPage() {
-  // CLIENT SIDE RENDERING
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    Axios.get('/posts')
-      .then((res) => setPosts(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  const { data: posts } = useSWR('/posts');
 
   return (
     <div>
@@ -31,7 +25,7 @@ export default function IndexPage() {
       <div className="container flex pt-4">
         {/* Posts Feed */}
         <div className="w-160">
-          {posts.map((post) => (
+          {posts?.map((post) => (
             <PostCard post={post} key={post.identifier} />
           ))}
         </div>
