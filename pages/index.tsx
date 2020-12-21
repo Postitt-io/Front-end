@@ -1,15 +1,12 @@
 import Head from 'next/head';
 import useSWR from 'swr';
-import Axios from 'axios';
 
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import { Post } from '../types';
-
 // import { GetServerSideProps } from 'next';
 
-import { useEffect, useState } from 'react';
+import { Fragment } from 'react';
 import PostCard from '../components/PostCard';
 
 dayjs.extend(relativeTime);
@@ -18,7 +15,7 @@ export default function IndexPage() {
   const { data: posts } = useSWR('/posts');
 
   return (
-    <div>
+    <Fragment>
       <Head>
         <title>Postitt.io</title>
       </Head>
@@ -31,7 +28,7 @@ export default function IndexPage() {
         </div>
       </div>
       {/* Sidebar */}
-    </div>
+    </Fragment>
   );
 }
 // SSR Example
