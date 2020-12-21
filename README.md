@@ -1,29 +1,56 @@
-# Tailwind CSS example
+# Postitt Setup
 
-This is an example of using [Tailwind CSS](https://tailwindcss.com) in a Next.js project.
+This is an example of how to set up the dev environment to work on Postitt.
 
-## Deploy your own
+## Setting up environment variables:
 
-Deploy the example using [Vercel](https://vercel.com):
+---
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss)
+At the moment, there is one `.env` file in the Back-End repository for the server, a list of them is below.
 
-## How to use
+| Syntax     | Value                   |
+| ---------- | ----------------------- |
+| PORT       | 5000                    |
+| NODE_ENV   | development             |
+| JWT_SECRET | "secret"                |
+| ORIGIN     | `http://localhost:5000` |
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+---
+
+## Connecting the server to your local Postgres instance:
+
+in `Back-End/ormconfig.json` make sure you have the correct port, database, username and password for TypeORM to connect to Postgres.
+
+---
+
+## Starting the server and client
+
+Clone both repositories into any folder so they are like this:
 
 ```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
+Postitt-io
+│
+└──>Front-End
+│
+└──>Back-End
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/import?filter=next.js&utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Run the migration on the database to set up the tables correctly:
 
-## Notes
+```bash
+$~\Postitt-io\Back-End: npm run typeorm migration:run
+```
 
-This example is a basic starting point for using [Tailwind CSS](https://tailwindcss.com) with Next.js. It includes the following [PostCSS](https://github.com/postcss/postcss) plugins:
+If you'd like some sample data to work with, you can seed the database with:
 
-- [postcss-preset-env](https://preset-env.cssdb.org/) - Adds stage 2+ features and autoprefixes
+```bash
+$~\Postitt-io\Back-End: npm run seed
+```
 
-To control the generated stylesheet's filesize, this example uses Tailwind CSS' [`purge` option](https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css) to remove unused CSS.
+Then you can run the below command. This will start both the client and the server at the same time.
+
+```bash
+$~\Postitt-io\Back-End: npm run dev
+```
+
+## Happy coding!
