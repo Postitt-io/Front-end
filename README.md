@@ -36,7 +36,9 @@ Postitt-io
 
 ---
 
-### _For the following commands, make sure your current directory is `$~\Postitt-io\Back-End`_
+### _For the following commands, make sure your current directory is:_
+
+`$~\Postitt-io\Back-End`
 
 ---
 
@@ -48,7 +50,7 @@ npm run typeorm migration:run
 
 If you'd like some sample data to work with, you can seed the database with:
 
-```bash*
+```bash
 npm run seed
 ```
 
