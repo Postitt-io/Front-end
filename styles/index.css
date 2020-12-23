@@ -2,8 +2,6 @@
 
 /* Write your own custom base styles here */
 
-@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
-
 /* Start purging... */
 @import 'tailwindcss/components';
 /* Stop purging. */
@@ -14,16 +12,19 @@ body {
 }
 
 /* Write your own custom component styles here */
-.btn-blue {
-  @apply px-4 py-2 font-bold text-white bg-blue-500 rounded;
-}
 
-.btn-postitt {
-  @apply px-4 py-2 rounded-lg font-semibold text-lg no-underline text-white group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-md transition duration-150 ease-in-out;
-}
+@layer components {
+  .btn-postitt {
+    @apply inline-block px-4 py-2 text-lg font-semibold text-white no-underline transition duration-150 ease-in-out rounded-lg group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-inner;
+  }
 
-.input-postitt {
-  @apply px-4 py-2 text-sm md:text-lg rounded-lg border border-gray-200 flex w-full focus:outline-none focus:shadow-md transition duration-150 ease-in-out;
+  .btn-postitt-hollow {
+    @apply inline-block px-4 py-2 text-lg font-semibold no-underline transition duration-150 ease-in-out bg-gray-100 rounded-lg text-button-blue group-hover:text-white hover:bg-opacity-90 hover:bg-button-blue hover:shadow-inner;
+  }
+
+  .input-postitt {
+    @apply flex w-full px-4 py-2 text-sm transition duration-150 ease-in-out border border-gray-200 rounded-lg md:text-lg focus:outline-none focus:shadow-inner dark:text-gray-100 dark:bg-gray-600;
+  }
 }
 
 /* Start purging... */
