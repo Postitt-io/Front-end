@@ -14,6 +14,7 @@ import Image from 'next/image';
 import { useAuthState } from '../../context/auth';
 import classNames from 'classnames';
 import Axios from 'axios';
+import SideBar from '../../components/SideBar';
 
 export default function SubPage() {
   //local state
@@ -156,6 +157,7 @@ export default function SubPage() {
           {/* Posts & Sidebar */}
           <div className="container flex pt-5">
             <div className="w-160">{postsMarkup}</div>
+            <SideBar sub={sub} />
           </div>
         </Fragment>
       )}
