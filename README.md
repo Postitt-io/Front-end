@@ -10,6 +10,7 @@ At the moment, there is one `.env` file in the Back-End repository for the serve
 | ---------- | ----------------------- |
 | PORT       | 5000                    |
 | NODE_ENV   | development             |
+| APP_URL    | `http://localhost:5000` |
 | JWT_SECRET | "secret"                |
 | ORIGIN     | `http://localhost:5000` |
 
