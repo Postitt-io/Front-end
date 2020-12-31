@@ -103,7 +103,7 @@ export default function PostPage() {
                     className="w-6 mx-auto text-gray-400 transition duration-75 rounded cursor-pointer hover:bg-gray-300 hover:text-red-300"
                     onClick={() => vote(-1)}
                   >
-                    // TODO: Why doesn't the user vote get set?
+                    {/* // TODO: Why doesn't the user vote get set? */}
                     <i
                       className={classNames('far fa-minus-square', {
                         'text-red-300': post.userVote === -1,
