@@ -7,6 +7,7 @@ export interface Post {
   updatedAt: string;
   body?: string;
   username: string;
+  sub?: Sub;
   //virtual fields
   url: string;
   voteScore?: number;
@@ -34,4 +35,5 @@ export interface Sub {
   // Virtuals
   imageUrl: string;
   bannerUrl: string;
+  postCount?: number;
 }

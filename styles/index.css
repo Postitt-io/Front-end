@@ -15,7 +15,7 @@ body {
 
 @layer components {
   .btn-postitt {
-    @apply inline-block px-4 py-2 text-lg font-semibold text-white no-underline transition duration-150 ease-in-out rounded-lg group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-inner;
+    @apply inline-block px-4 py-2 text-lg font-semibold text-center text-white no-underline transition duration-150 ease-in-out rounded-lg group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-inner;
   }
 
   .btn-postitt-hollow {

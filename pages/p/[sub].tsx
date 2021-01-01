@@ -14,6 +14,7 @@ import Image from 'next/image';
 import { useAuthState } from '../../context/auth';
 import classNames from 'classnames';
 import Axios from 'axios';
+import SideBar from '../../components/SideBar';
 
 export default function SubPage() {
   //local state
@@ -127,13 +128,20 @@ export default function SubPage() {
             {/* Sub metadata */}
             <div className="h-20 bg-white dark:bg-gray-800">
               <div className="container relative flex">
-                <div className="absolute" style={{ top: -15 }}>
+                <div
+                  className="absolute rounded-full"
+                  style={{ top: -15 }}
+                >
                   <Image
                     src={sub.imageUrl}
                     alt="Sub"
-                    className={classNames('rounded-full bg-white', {
-                      'cursor-pointer': ownSub,
-                    })}
+                    className={classNames(
+                      // TODO: #22 Make the white ring not cut off
+                      'rounded-full ring-2 ring-white',
+                      {
+                        'cursor-pointer': ownSub,
+                      },
+                    )}
                     width={70}
                     height={70}
                     onClick={() => openFileInput('image')}
@@ -156,6 +164,7 @@ export default function SubPage() {
           {/* Posts & Sidebar */}
           <div className="container flex pt-5">
             <div className="w-160">{postsMarkup}</div>
+            <SideBar sub={sub} />
           </div>
         </Fragment>
       )}
