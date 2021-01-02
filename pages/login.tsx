@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Axios from 'axios';
 
+// import classNames from 'classnames';
 import { useAuthDispatch, useAuthState } from '../context/auth';
 
 import InputGroup from '../components/inputGroup';
@@ -71,6 +72,7 @@ export default function LoginPage() {
               placeholder="Password"
               error={errors.password}
             />
+            {/* TODO: #34 Make the password input have the eye icon span */}
             {/* <div className="relative flex flex-wrap items-stretch w-full mb-8">
               <input
                 id="password"
