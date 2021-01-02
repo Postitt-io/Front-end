@@ -137,7 +137,7 @@ export default function SubPage() {
                     alt="Sub"
                     className={classNames(
                       // TODO: #22 Make the white ring not cut off
-                      'rounded-full ring-2 ring-white',
+                      'rounded-full',
                       {
                         'cursor-pointer': ownSub,
                       },
