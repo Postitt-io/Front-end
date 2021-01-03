@@ -15,11 +15,11 @@ body {
 
 @layer components {
   .btn-postitt {
-    @apply inline-block px-4 py-2 text-lg font-semibold text-center text-white no-underline transition duration-150 ease-in-out rounded-lg group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-inner;
+    @apply inline-block px-4 py-2 text-lg font-semibold text-center text-white no-underline transition duration-150 ease-in-out rounded-lg group-hover:text-white bg-button-blue hover:bg-opacity-90 hover:shadow-inner disabled:bg-gray-500;
   }
 
   .btn-postitt-hollow {
-    @apply inline-block px-4 py-2 text-lg font-semibold no-underline transition duration-150 ease-in-out bg-gray-100 rounded-lg text-button-blue group-hover:text-white hover:bg-opacity-90 hover:bg-button-blue hover:shadow-inner;
+    @apply inline-block px-4 py-2 text-lg font-semibold no-underline transition duration-150 ease-in-out bg-gray-100 border rounded-lg border-button-blue hover:text-gray-200 text-button-blue group-hover:text-white hover:bg-opacity-90 hover:bg-button-blue hover:shadow-inner;
   }
 
   .input-postitt {
