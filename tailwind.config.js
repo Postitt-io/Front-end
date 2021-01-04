@@ -26,6 +26,8 @@ module.exports = {
   variants: {
     extend: {
       animation: ['hover', 'focus'],
+      backgroundColor: ['disabled'],
+      borderColor: ['disabled'],
     },
   },
   plugins: [
