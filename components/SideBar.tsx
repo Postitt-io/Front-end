@@ -31,7 +31,7 @@ export default function SideBar({ sub }: { sub: Sub }) {
             Created {dayjs(sub.createdAt).format('D MMM YYYY')}
           </p>
           {authenticated && (
-            <Link href={`/r/${sub.name}/submit`}>
+            <Link href={`/p/${sub.name}/submit`}>
               <a className="w-full py-1 text-sm font-medium btn-postitt">
                 Create Post
               </a>
