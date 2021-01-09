@@ -48,7 +48,7 @@ export default function IndexPage() {
                     <Image
                       src={sub.imageUrl}
                       alt={sub.name}
-                      className="rounded-full cursor-pointer"
+                      className="overflow-hidden rounded-full cursor-pointer"
                       width={(6 * 16) / 4}
                       height={(6 * 16) / 4}
                     />
