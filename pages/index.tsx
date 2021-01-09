@@ -47,7 +47,7 @@ export default function IndexPage() {
                   <Link href={`p/${sub.name}`}>
                     <Image
                       src={sub.imageUrl}
-                      alt="Sub"
+                      alt={sub.name}
                       className="rounded-full cursor-pointer"
                       width={(6 * 16) / 4}
                       height={(6 * 16) / 4}
