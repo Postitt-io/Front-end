@@ -63,8 +63,8 @@ export default function user() {
           <div className="ml-6 shadow-md w-80">
             <div className="bg-white rounded">
               <div className="p-1 rounded-t bg-button-blue">
-                {/* TODO: make the user profile show the user uploaded image */}
-                {/* TODO: convert the img tag to Next Image */}
+                {/* TODO: #52 make the user profile show the user uploaded image */}
+                {/* TODO: #52 convert the img tag to Next Image */}
                 <img
                   src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
                   className="w-16 h-16 mx-auto my-1 border-2 border-white rounded-full cursor-pointer"
