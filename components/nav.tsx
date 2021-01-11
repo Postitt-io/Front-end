@@ -45,6 +45,7 @@ const Nav: React.FC = (): JSX.Element => {
   useEffect(() => {
     if (name.trim() === '') {
       setSubs([]);
+      setName('');
       return;
     }
     searchSubs();
