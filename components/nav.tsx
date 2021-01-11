@@ -64,11 +64,6 @@ const Nav: React.FC = (): JSX.Element => {
     );
   };
 
-  const goToSub = (subName: string) => {
-    router.push(`/p/${subName}`);
-    setName('');
-  };
-
   return (
     <nav className="bg-gray-200 border-b-2 h-15 dark:border-gray-200 dark:bg-gray-800">
       {/* Logo and title */}
@@ -98,24 +93,26 @@ const Nav: React.FC = (): JSX.Element => {
           >
             {subs?.map(
               (sub): JSX.Element => (
-                <div
-                  className="flex items-center px-4 py-3 cursor-pointer hover:bg-gray-200"
-                  onClick={() => goToSub(sub.name)}
-                >
-                  <Image
-                    src={sub.imageUrl}
-                    alt={sub.name}
-                    className="rounded-full"
-                    height={(8 * 16) / 4}
-                    width={(8 * 16) / 4}
-                  />
-                  <div className="ml-4 text-sm">
-                    <p className="font-medium">{sub.name}</p>
-                    <p className="text-gray-600">{sub.title}</p>
-                    {/* TODO: #54 show number of members in the sub */}
-                    <p className="text-gray-600">420 members</p>
+                <Link href={`/p/${sub.name}`}>
+                  <div
+                    className="flex items-center px-4 py-3 cursor-pointer hover:bg-gray-200"
+                    onClick={() => setName('')}
+                  >
+                    <Image
+                      src={sub.imageUrl}
+                      alt={sub.name}
+                      className="rounded-full"
+                      height={(8 * 16) / 4}
+                      width={(8 * 16) / 4}
+                    />
+                    <div className="ml-4 text-sm">
+                      <p className="font-medium">{sub.name}</p>
+                      <p className="text-gray-600">{sub.title}</p>
+                      {/* TODO: #54 show number of members in the sub */}
+                      <p className="text-gray-600">420 members</p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               ),
             )}
           </div>
