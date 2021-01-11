@@ -131,13 +131,13 @@ const Nav: React.FC = (): JSX.Element => {
             ) : (
               <Fragment>
                 {links.map(({ href, label }) => (
-                  <li key={`${href}${label}`}>
+                  <div key={`${href}${label}`}>
                     <Link href={href}>
                       <a className="w-32 py-1 text-center btn-postitt">
                         {label}
                       </a>
                     </Link>
-                  </li>
+                  </div>
                 ))}
               </Fragment>
             ))}
