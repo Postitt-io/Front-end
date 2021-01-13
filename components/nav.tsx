@@ -99,13 +99,15 @@ const Nav: React.FC = (): JSX.Element => {
                     className="flex items-center px-4 py-3 cursor-pointer hover:bg-gray-200"
                     onClick={() => setName('')}
                   >
-                    <Image
-                      src={sub.imageUrl}
-                      alt={sub.name}
-                      className="rounded-full"
-                      height={(8 * 16) / 4}
-                      width={(8 * 16) / 4}
-                    />
+                    <a>
+                      <Image
+                        src={sub.imageUrl}
+                        alt={sub.name}
+                        className="rounded-full"
+                        height={(8 * 16) / 4}
+                        width={(8 * 16) / 4}
+                      />
+                    </a>
                     <div className="ml-4 text-sm">
                       <p className="font-medium">{sub.name}</p>
                       <p className="text-gray-600">{sub.title}</p>
