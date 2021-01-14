@@ -85,7 +85,10 @@ export default function PostCard({
           {/* Sub  Icon */}
           <Link href={`/p/${subName}`}>
             <img
-              src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+              // TODO: #59 make the post card display the sub image
+              src={
+                'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
+              }
               className="w-6 h-6 mr-1 rounded-full cursor-pointer"
             />
           </Link>
