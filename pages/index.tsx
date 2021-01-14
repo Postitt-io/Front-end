@@ -11,12 +11,15 @@ import PostCard from '../components/PostCard';
 import { Post, Sub } from '../types';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useAuthState } from '../context/auth';
 
 dayjs.extend(relativeTime);
 
 export default function IndexPage() {
   const { data: posts } = useSWR<Post[]>('/posts');
   const { data: topSubs } = useSWR<Sub[]>('/misc/top-subs');
+
+  const { authenticated } = useAuthState();
 
   return (
     <Fragment>
@@ -65,6 +68,15 @@ export default function IndexPage() {
                 </div>
               ))}
             </div>
+            {authenticated && (
+              <div className="p-4 border-t-2">
+                <Link href="/boards/create">
+                  <a className="w-full px-2 py-1 text-sm btn-postitt">
+                    Create Board
+                  </a>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
