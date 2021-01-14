@@ -66,58 +66,57 @@ const Nav: React.FC = (): JSX.Element => {
   };
 
   return (
-    <nav className="bg-gray-200 border-b-2 h-15 dark:border-gray-200 dark:bg-gray-800">
+    <nav className="bg-gray-200 border-b-2 dark:border-gray-200 dark:bg-gray-800">
       {/* Logo and title */}
       <div className="flex items-center justify-between p-3">
         <Link href="/">
-          <Image
-            src={logoSource}
-            width={250}
-            height={66}
-            className="cursor-pointer"
-          />
+          <a className="hidden cursor-pointer sm:block">
+            <Image src={logoSource} width={250} height={66} />
+          </a>
         </Link>
         {/* Search Input */}
-        <div className="relative flex items-center mx-auto transition duration-150 bg-gray-100 border rounded w-160 hover:border-button-blue hover:bg-white">
-          <i className="pl-4 pr-3 text-gray-500 fas fa-search"></i>
-          <input
-            type="text"
-            className="py-1 pr-3 bg-transparent rounded focus:outline-none"
-            placeholder="Search"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          {/* FIXME: #53 this overlaps the images in the top boards listt */}
-          <div
-            className="absolute left-0 right-0 bg-white"
-            style={{ top: '100%' }}
-          >
-            {subs?.map(
-              (sub): JSX.Element => (
-                <Link href={`/p/${sub.name}`}>
-                  <div
-                    className="flex items-center px-4 py-3 cursor-pointer hover:bg-gray-200"
-                    onClick={() => setName('')}
-                  >
-                    <a>
-                      <Image
-                        src={sub.imageUrl}
-                        alt={sub.name}
-                        className="rounded-full"
-                        height={(8 * 16) / 4}
-                        width={(8 * 16) / 4}
-                      />
-                    </a>
-                    <div className="ml-4 text-sm">
-                      <p className="font-medium">{sub.name}</p>
-                      <p className="text-gray-600">{sub.title}</p>
-                      {/* TODO: #54 show number of members in the sub */}
-                      <p className="text-gray-600">420 members</p>
+        <div className="max-w-full px-4 w-160">
+          <div className="relative flex items-center transition duration-150 bg-gray-100 border rounded hover:border-button-blue hover:bg-white">
+            <i className="pl-4 pr-3 text-gray-500 fas fa-search"></i>
+            <input
+              type="text"
+              className="py-1 pr-3 bg-transparent rounded focus:outline-none"
+              placeholder="Search"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            {/* FIXME: #53 this overlaps the images in the top boards listt */}
+            <div
+              className="absolute left-0 right-0 bg-white"
+              style={{ top: '100%' }}
+            >
+              {subs?.map(
+                (sub): JSX.Element => (
+                  <Link href={`/p/${sub.name}`}>
+                    <div
+                      className="flex items-center px-4 py-3 cursor-pointer hover:bg-gray-200"
+                      onClick={() => setName('')}
+                    >
+                      <a>
+                        <Image
+                          src={sub.imageUrl}
+                          alt={sub.name}
+                          className="rounded-full"
+                          height={(8 * 16) / 4}
+                          width={(8 * 16) / 4}
+                        />
+                      </a>
+                      <div className="ml-4 text-sm">
+                        <p className="font-medium">{sub.name}</p>
+                        <p className="text-gray-600">{sub.title}</p>
+                        {/* TODO: #54 show number of members in the sub */}
+                        <p className="text-gray-600">420 members</p>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              ),
-            )}
+                  </Link>
+                ),
+              )}
+            </div>
           </div>
         </div>
         {/* Auth button */}
@@ -125,7 +124,10 @@ const Nav: React.FC = (): JSX.Element => {
           {!loading &&
             (authenticated ? (
               //show logout button
-              <button className="btn-postitt" onClick={logout}>
+              <button
+                className="hidden w-20 py-1 text-sm text-center lg:w-32 lg:text-lg btn-postitt sm:block"
+                onClick={logout}
+              >
                 Logout
               </button>
             ) : (
@@ -133,7 +135,7 @@ const Nav: React.FC = (): JSX.Element => {
                 {links.map(({ href, label }) => (
                   <div key={`${href}${label}`}>
                     <Link href={href}>
-                      <a className="w-32 py-1 text-center btn-postitt">
+                      <a className="hidden w-20 py-1 text-sm text-center lg:w-32 lg:text-lg btn-postitt sm:block">
                         {label}
                       </a>
                     </Link>
