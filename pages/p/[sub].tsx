@@ -81,7 +81,9 @@ export default function SubPage() {
     postsMarkup = <p className="text-lg text-center">Loading...</p>;
   } else if (sub.posts.length === 0) {
     postsMarkup = (
-      <p className="text-lg text-center">No posts submitted yet!</p>
+      <p className="text-lg text-center text-gray-900 dark:text-gray-100">
+        No posts submitted yet!
+      </p>
     );
   } else {
     postsMarkup = sub.posts.map((post) => (
@@ -163,7 +165,9 @@ export default function SubPage() {
 
           {/* Posts & Sidebar */}
           <div className="container flex pt-5">
-            <div className="w-160">{postsMarkup}</div>
+            <div className="w-full px-4 md:w-160 md:p-0">
+              {postsMarkup}
+            </div>
             <SideBar sub={sub} />
           </div>
         </Fragment>
