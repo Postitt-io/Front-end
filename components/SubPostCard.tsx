@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import Link from 'next/link';
 import Axios from 'axios';
 
-import { Post, Sub } from '../types';
+import { Post } from '../types';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import classNames from 'classnames';
 import { useAuthState } from '../context/auth';
@@ -11,12 +11,11 @@ import ActionButton from './ActionButton';
 
 dayjs.extend(relativeTime);
 
-interface PostCardProps {
+interface SubPostCardProps {
   post: Post;
-  sub: Sub;
 }
 
-export default function PostCard({
+export default function SubPostCard({
   post: {
     identifier,
     slug,
@@ -29,9 +28,8 @@ export default function PostCard({
     commentCount,
     url,
     username,
-    sub: { imageUrl },
   },
-}: PostCardProps): JSX.Element {
+}: SubPostCardProps) {
   const router = useRouter();
   const { authenticated } = useAuthState();
 
@@ -85,13 +83,15 @@ export default function PostCard({
       <div className="w-full p-2">
         <div className="flex items-center">
           {/* Sub  Icon */}
-          <Link href={`/p/${subName}`}>
+          {/* <Link href={`/p/${subName}`}>
             <img
               // TODO: #59 make the post card display the sub image
-              src={imageUrl}
+              src={
+                'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
+              }
               className="w-6 h-6 mr-1 rounded-full cursor-pointer"
             />
-          </Link>
+          </Link> */}
           {/* Sub Name */}
           <Link href={`/p/${subName}`}>
             <a className="text-xs font-semibold cursor-pointer hover:underline">

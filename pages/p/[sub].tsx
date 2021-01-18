@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 import useSWR from 'swr';
-import PostCard from '../../components/PostCard';
+import SubPostCard from '../../components/SubPostCard';
 import { Sub } from '../../types';
 import Image from 'next/image';
 import { useAuthState } from '../../context/auth';
@@ -57,6 +57,7 @@ export default function SubPage() {
       revalidate();
     } catch (err) {
       console.log(err);
+      alert(err);
     }
   };
 
@@ -86,10 +87,13 @@ export default function SubPage() {
       </p>
     );
   } else {
-    postsMarkup = sub.posts.map((post) => (
-      <PostCard key={post.identifier} post={post} />
-    ));
+    postsMarkup = sub.posts.map(
+      (post): JSX.Element => (
+        <SubPostCard key={post.identifier} post={post} />
+      ),
+    );
   }
+
   return (
     <div>
       <Head>
