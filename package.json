@@ -2,7 +2,9 @@
   "name": "postitt-front-end",
   "version": "1.0.0",
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "server": "cd ../Back-end/ && ts-node src/server.ts",
+    "client": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\" -n server,client",
     "build": "next build",
     "start": "next start"
   },
@@ -22,7 +24,10 @@
     "@types/classnames": "2.2.11",
     "@types/node": "14.14.21",
     "@types/react": "17.0.0",
+
+    "concurrently": "^5.3.0",
     "autoprefixer": "10.2.1",
+
     "cross-env": "7.0.3",
     "eslint": "7.18.0",
     "eslint-config-airbnb-base": "14.2.1",
