@@ -14,7 +14,6 @@ module.exports = {
         body: ['Karla'],
       },
       colors: {
-        'accent-1': '#333',
         'button-blue': '#604E91',
       },
       spacing: {
