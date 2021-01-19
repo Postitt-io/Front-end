@@ -31,7 +31,7 @@ export default function PostCard({
     username,
     sub: { imageUrl },
   },
-}: PostCardProps): JSX.Element {
+}: Partial<PostCardProps>): JSX.Element {
   const router = useRouter();
   const { authenticated } = useAuthState();
 
