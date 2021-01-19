@@ -13,6 +13,7 @@ dayjs.extend(relativeTime);
 
 interface PostCardProps {
   post: Post;
+  revalidate?: Function;
 }
 
 export default function PostCard({
@@ -29,28 +30,28 @@ export default function PostCard({
     url,
     username,
   },
+  revalidate,
 }: PostCardProps) {
   const router = useRouter();
   const { authenticated } = useAuthState();
 
   const vote = async (value: number) => {
     if (!authenticated) router.push('/login');
+    if (value === userVote) value = 0;
     try {
       Axios.post('/misc/vote', {
         identifier,
         slug,
         value,
       });
+      if (revalidate) revalidate();
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div
-      key={identifier}
-      className="flex mb-4 bg-white rounded shadow-inner"
-    >
+    <div key={identifier} className="flex mb-4 bg-white rounded shadow-inner">
       {/* Vote Section */}
       {/* Plus Button */}
       <div className="w-10 py-3 text-center bg-gray-200 rounded-l">
@@ -86,17 +87,13 @@ export default function PostCard({
           <Link href={`/p/${subName}`}>
             <img
               // TODO: #59 make the post card display the sub image
-              src={
-                'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'
-              }
+              src={'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}
               className="w-6 h-6 mr-1 rounded-full cursor-pointer"
             />
           </Link>
           {/* Sub Name */}
           <Link href={`/p/${subName}`}>
-            <a className="text-xs font-semibold cursor-pointer hover:underline">
-              p/{subName}
-            </a>
+            <a className="text-xs font-semibold cursor-pointer hover:underline">p/{subName}</a>
           </Link>
           <p className="text-xs text-gray-500">
             <span className="mx-1">•</span>
@@ -107,9 +104,7 @@ export default function PostCard({
             </Link>
             {/* Timestamp */}
             <Link href={url}>
-              <a className="mx-1 hover:underline">
-                {dayjs(createdAt).fromNow()}
-              </a>
+              <a className="mx-1 hover:underline">{dayjs(createdAt).fromNow()}</a>
             </Link>
           </p>
         </div>
@@ -125,9 +120,7 @@ export default function PostCard({
             <a>
               <ActionButton>
                 <i className="mr-1 fas fa-comment-alt fa-xs"></i>
-                <span className="font-semibold">
-                  {commentCount} comments
-                </span>
+                <span className="font-semibold">{commentCount} comments</span>
               </ActionButton>
             </a>
           </Link>
