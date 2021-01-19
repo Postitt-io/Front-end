@@ -1,13 +1,13 @@
-import dayjs from 'dayjs';
 import Link from 'next/link';
 import Axios from 'axios';
-
-import { Post } from '../types';
+import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import classNames from 'classnames';
+
+import { Post } from '../types';
+import ActionButton from './ActionButton';
 import { useAuthState } from '../context/auth';
 import { useRouter } from 'next/router';
-import ActionButton from './ActionButton';
 
 dayjs.extend(relativeTime);
 
@@ -37,13 +37,16 @@ export default function PostCard({
 
   const vote = async (value: number) => {
     if (!authenticated) router.push('/login');
+
     if (value === userVote) value = 0;
+
     try {
-      Axios.post('/misc/vote', {
+      await Axios.post('/misc/vote', {
         identifier,
         slug,
         value,
       });
+
       if (revalidate) revalidate();
     } catch (err) {
       console.log(err);

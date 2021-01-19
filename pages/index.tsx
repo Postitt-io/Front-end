@@ -52,7 +52,6 @@ export default function IndexPage() {
         if (entries[0].isIntersecting === true) {
           setPage(page + 1);
           observer.unobserve(element);
-          console.log('reached bottom of element');
         }
       },
       { threshold: 0.8 },
