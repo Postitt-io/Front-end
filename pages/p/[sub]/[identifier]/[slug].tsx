@@ -12,13 +12,14 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import { Post, Comment } from '../../../../types';
 import Axios from 'axios';
 import { useAuthState } from '../../../../context/auth';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState, useEffect } from 'react';
 
 dayjs.extend(relativeTime);
 
 export default function PostPage() {
   // Local State
   const [newComment, setnewComment] = useState('');
+  const [description, setDescription] = useState('');
   //Global State
   const { authenticated, user } = useAuthState();
 
@@ -31,23 +32,24 @@ export default function PostPage() {
   );
 
   const { data: comments, revalidate } = useSWR<Comment[]>(
-    identifier && slug
-      ? `/posts/${identifier}/${slug}/comments`
-      : null,
+    identifier && slug ? `/posts/${identifier}/${slug}/comments` : null,
   );
 
   if (error) router.push('/');
+
+  useEffect(() => {
+    if (!post) return;
+    let desc = post.body || post.title;
+    desc = desc.substring(0, 157).concat('...');
+    setDescription(desc);
+  }, [post]);
 
   const vote = async (value: number, comment?: Comment) => {
     // If not logged in, go to login
     if (!authenticated) router.push('/login');
 
     //If vote is the same, reset vote
-    if (
-      (!comment && value === post.userVote) ||
-      (comment && comment.userVote === value)
-    )
-      value = 0;
+    if ((!comment && value === post.userVote) || (comment && comment.userVote === value)) value = 0;
 
     try {
       await Axios.post('/misc/vote', {
@@ -67,12 +69,9 @@ export default function PostPage() {
     if (newComment.trim() === '') return;
 
     try {
-      await Axios.post(
-        `/posts/${post.identifier}/${post.slug}/comments`,
-        {
-          body: newComment,
-        },
-      );
+      await Axios.post(`/posts/${post.identifier}/${post.slug}/comments`, {
+        body: newComment,
+      });
       revalidate();
       setnewComment('');
     } catch (err) {
@@ -84,6 +83,11 @@ export default function PostPage() {
     <>
       <Head>
         <title>{post?.title}</title>
+        <meta name="description" content={description}></meta>
+        <meta property="og:description" content={description}></meta>
+        <meta property="og:title" content={post?.title}></meta>
+        <meta property="twitter:description" content={description}></meta>
+        <meta property="twitter:title" content={post?.title}></meta>
       </Head>
       {/* Header */}
       <Link href={`/p/${sub}`}>
@@ -92,16 +96,10 @@ export default function PostPage() {
             <div className="container flex">
               {post && (
                 <div className="w-8 h-8 mr-2 overflow-hidden rounded-full">
-                  <Image
-                    src={post.sub.imageUrl}
-                    height={(8 * 16) / 4}
-                    width={(8 * 16) / 4}
-                  />
+                  <Image src={post.sub.imageUrl} height={(8 * 16) / 4} width={(8 * 16) / 4} />
                 </div>
               )}
-              <p className="text-xl font-semibold text-gray-200">
-                p/{sub}
-              </p>
+              <p className="text-xl font-semibold text-gray-200">p/{sub}</p>
             </div>
           </div>
         </a>
@@ -127,9 +125,7 @@ export default function PostPage() {
                       ></i>
                     </div>
                     {/* Vote Count */}
-                    <p className="text-xs font-bold">
-                      {post.voteScore}
-                    </p>
+                    <p className="text-xs font-bold">{post.voteScore}</p>
                     {/* Minus Button */}
                     <div
                       className="w-6 mx-auto text-gray-400 transition duration-75 rounded cursor-pointer hover:bg-gray-300 hover:text-red-300"
@@ -148,22 +144,16 @@ export default function PostPage() {
                         Posted by
                         {/* Username */}
                         <Link href={`/u/${post.username}`}>
-                          <a className="mx-1 hover:underline">
-                            u/{post.username}
-                          </a>
+                          <a className="mx-1 hover:underline">u/{post.username}</a>
                         </Link>
                         {/* Timestamp */}
                         <Link href={post.url}>
-                          <a className="mx-1 hover:underline">
-                            {dayjs(post.createdAt).fromNow()}
-                          </a>
+                          <a className="mx-1 hover:underline">{dayjs(post.createdAt).fromNow()}</a>
                         </Link>
                       </p>
                     </div>
                     {/* Post title */}
-                    <h1 className="my-1 text-xl font-medium">
-                      {post.title}
-                    </h1>
+                    <h1 className="my-1 text-xl font-medium">{post.title}</h1>
                     {/* Post Body */}
                     <p className="my-3 text-sm">{post.body}</p>
                     {/* Actions */}
@@ -173,9 +163,7 @@ export default function PostPage() {
                         <a>
                           <ActionButton>
                             <i className="mr-1 fas fa-comment-alt fa-xs"></i>
-                            <span className="font-semibold">
-                              {post.commentCount} comments
-                            </span>
+                            <span className="font-semibold">{post.commentCount} comments</span>
                           </ActionButton>
                         </a>
                       </Link>
@@ -199,10 +187,7 @@ export default function PostPage() {
                       <p className="mb-1 text-xs">
                         Commenting as{' '}
                         <Link href={`/u/${user.username}`}>
-                          <a
-                            href=""
-                            className="font-semibold text-button-blue hover:underline"
-                          >
+                          <a href="" className="font-semibold text-button-blue hover:underline">
                             {user.username}
                           </a>
                         </Link>
@@ -210,9 +195,7 @@ export default function PostPage() {
                       <form onSubmit={sumbitComment}>
                         <textarea
                           className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-gray-600"
-                          onChange={(e) =>
-                            setnewComment(e.target.value)
-                          }
+                          onChange={(e) => setnewComment(e.target.value)}
                           value={newComment}
                         ></textarea>
                         <div className="flex justify-end">
@@ -232,14 +215,10 @@ export default function PostPage() {
                       </p>
                       <div>
                         <Link href="/login">
-                          <a className="px-4 py-1 mr-4 text-xs btn-postitt-hollow">
-                            Login
-                          </a>
+                          <a className="px-4 py-1 mr-4 text-xs btn-postitt-hollow">Login</a>
                         </Link>
                         <Link href="/register">
-                          <a className="px-4 py-1 text-xs btn-postitt">
-                            Register
-                          </a>
+                          <a className="px-4 py-1 text-xs btn-postitt">Register</a>
                         </Link>
                       </div>
                     </div>
@@ -257,40 +236,29 @@ export default function PostPage() {
                         onClick={() => vote(1, comment)}
                       >
                         <i
-                          className={classNames(
-                            'far fa-plus-square',
-                            {
-                              'text-button-blue':
-                                comment.userVote === 1,
-                            },
-                          )}
+                          className={classNames('far fa-plus-square', {
+                            'text-button-blue': comment.userVote === 1,
+                          })}
                         ></i>
                       </div>
                       {/* Vote Count */}
-                      <p className="text-xs font-bold">
-                        {comment.voteScore}
-                      </p>
+                      <p className="text-xs font-bold">{comment.voteScore}</p>
                       {/* Minus Button */}
                       <div
                         className="w-6 mx-auto text-gray-400 transition duration-75 rounded cursor-pointer hover:bg-gray-300 hover:text-red-300"
                         onClick={() => vote(-1, comment)}
                       >
                         <i
-                          className={classNames(
-                            'far fa-minus-square',
-                            {
-                              'text-red-300': comment.userVote === -1,
-                            },
-                          )}
+                          className={classNames('far fa-minus-square', {
+                            'text-red-300': comment.userVote === -1,
+                          })}
                         ></i>
                       </div>
                     </div>
                     <div className="py-2 pr-2">
                       <p className="mb-1 text-xs leading-none">
                         <Link href={`/u/${comment.username}`}>
-                          <a className="mr-1 font-bold hover:underline">
-                            {comment.username}
-                          </a>
+                          <a className="mr-1 font-bold hover:underline">{comment.username}</a>
                         </Link>
                         <span className="text-gray-600">
                           {`

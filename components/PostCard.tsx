@@ -29,10 +29,12 @@ export default function PostCard({
     commentCount,
     url,
     username,
+    sub,
   },
   revalidate,
 }: PostCardProps) {
   const router = useRouter();
+  const isInSubPage = router.pathname === '/p/[sub]';
   const { authenticated } = useAuthState();
 
   const vote = async (value: number) => {
@@ -87,19 +89,19 @@ export default function PostCard({
       <div className="w-full p-2">
         <div className="flex items-center">
           {/* Sub  Icon */}
-          <Link href={`/p/${subName}`}>
-            <img
-              // TODO: #59 make the post card display the sub image
-              src={'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y'}
-              className="w-6 h-6 mr-1 rounded-full cursor-pointer"
-            />
-          </Link>
-          {/* Sub Name */}
-          <Link href={`/p/${subName}`}>
-            <a className="text-xs font-semibold cursor-pointer hover:underline">p/{subName}</a>
-          </Link>
+          {!isInSubPage && (
+            <>
+              <Link href={`/p/${subName}`}>
+                <img src={sub.imageUrl} className="w-6 h-6 mr-1 rounded-full cursor-pointer" />
+              </Link>
+              {/* Sub Name */}
+              <Link href={`/p/${subName}`}>
+                <a className="text-xs font-semibold cursor-pointer hover:underline">p/{subName}</a>
+              </Link>
+              <span className="mx-1 text-xs text-gray-500">•</span>
+            </>
+          )}
           <p className="text-xs text-gray-500">
-            <span className="mx-1">•</span>
             Posted by
             {/* Username */}
             <Link href={`/u/${username}`}>

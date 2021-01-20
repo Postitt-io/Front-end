@@ -1,10 +1,4 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext,
-} from 'next/document';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -28,6 +22,18 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
           <link rel="icon" href="/favicon.ico" />
+          <meta property="og:site_name" content="Postitt"></meta>
+          <meta property="og:type" content="website"></meta>
+          <meta
+            property="og:image"
+            content={`${process.env.NEXT_PUBLIC_CLIENT_BASE_URL}/LogoLight.svg`}
+          ></meta>
+          <meta
+            property="twitter:image"
+            content={`${process.env.NEXT_PUBLIC_CLIENT_BASE_URL}/LogoLight.svg`}
+          ></meta>
+          <meta property="twitter:card" content="summary"></meta>
+          {/* <meta property="twitter:site" content="@Postitt"></meta> */}
         </Head>
         <body className="font-body">
           <Main />

@@ -18,21 +18,18 @@ dayjs.extend(relativeTime);
 export default function IndexPage() {
   const [observedPost, setObservedPost] = useState('');
 
-  // const { data: posts } = useSWR<Post[]>('/posts');
-  const { data: topSubs } = useSWR<Sub[]>('/misc/top-subs');
+  const title = 'Postitt.io';
+  const description = "Postitt is a collection of community boards related to anyone's interest.";
 
   const { authenticated } = useAuthState();
 
-  const {
-    data,
-    error,
-    mutate,
-    size: page,
-    setSize: setPage,
-    isValidating,
-    revalidate,
-  } = useSWRInfinite<Post[]>((index) => `/posts?page=${index}`);
+  const { data, error, size: page, setSize: setPage, isValidating, revalidate } = useSWRInfinite<
+    Post[]
+  >((index) => `/posts?page=${index}`);
 
+  const { data: topSubs } = useSWR<Sub[]>('/misc/top-subs');
+
+  const isInitialLoading = !data && !error;
   const posts: Post[] = data ? [].concat(...data) : [];
 
   useEffect(() => {
@@ -62,12 +59,18 @@ export default function IndexPage() {
   return (
     <Fragment>
       <Head>
-        <title>Postitt.io</title>
+        <title>{title}</title>
+        <meta name="description" content={description}></meta>
+        <meta property="og:description" content={description}></meta>
+        <meta property="og:title" content={title}></meta>
+        <meta property="og:url" content={title}></meta>
+        <meta property="twitter:description" content={description}></meta>
+        <meta property="twitter:title" content={title}></meta>
       </Head>
       <div className="container flex pt-4">
         {/* Posts Feed */}
         <div className="w-full px-4 md:w-160 md:p-0">
-          {isValidating && (
+          {isInitialLoading && (
             <p className="text-lg text-center text-gray-900 dark:text-gray-100">Loading...</p>
           )}
           {posts?.map((post) => (

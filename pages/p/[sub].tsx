@@ -1,12 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import {
-  ChangeEvent,
-  createRef,
-  Fragment,
-  useEffect,
-  useState,
-} from 'react';
+import { ChangeEvent, createRef, Fragment, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import PostCard from '../../components/PostCard';
 import { Sub } from '../../types';
@@ -27,9 +21,7 @@ export default function SubPage() {
   const fileInputRef = createRef<HTMLInputElement>();
   const subName = router.query.sub;
 
-  const { data: sub, error, revalidate } = useSWR<Sub>(
-    subName ? `/subs/${subName}` : null,
-  );
+  const { data: sub, error, revalidate } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
 
   useEffect(() => {
     if (!sub) return;
@@ -42,9 +34,7 @@ export default function SubPage() {
     fileInputRef.current.click();
   };
 
-  const uploadImage = async (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
+  const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
@@ -87,7 +77,7 @@ export default function SubPage() {
     );
   } else {
     postsMarkup = sub.posts.map((post) => (
-      <PostCard key={post.identifier} post={post} />
+      <PostCard key={post.identifier} post={post} revalidate={revalidate} />
     ));
   }
   return (
@@ -97,12 +87,7 @@ export default function SubPage() {
       </Head>
       {sub && (
         <Fragment>
-          <input
-            type="file"
-            hidden={true}
-            ref={fileInputRef}
-            onChange={uploadImage}
-          />
+          <input type="file" hidden={true} ref={fileInputRef} onChange={uploadImage} />
           {/* Sub info & Images */}
           <div>
             {/* Banner Image */}
@@ -130,10 +115,7 @@ export default function SubPage() {
             {/* Sub metadata */}
             <div className="h-20 bg-white dark:bg-gray-800">
               <div className="container relative flex">
-                <div
-                  className="absolute rounded-full"
-                  style={{ top: -15 }}
-                >
+                <div className="absolute rounded-full" style={{ top: -15 }}>
                   <Image
                     src={sub.imageUrl}
                     alt="Sub"
@@ -155,9 +137,7 @@ export default function SubPage() {
                       {sub.title}
                     </h1>
                   </div>
-                  <p className="text-sm font-bold text-gray-500">
-                    /p/{sub.name}
-                  </p>
+                  <p className="text-sm font-bold text-gray-500">/p/{sub.name}</p>
                 </div>
               </div>
             </div>
@@ -165,9 +145,7 @@ export default function SubPage() {
 
           {/* Posts & Sidebar */}
           <div className="container flex pt-5">
-            <div className="w-full px-4 md:w-160 md:p-0">
-              {postsMarkup}
-            </div>
+            <div className="w-full px-4 md:w-160 md:p-0">{postsMarkup}</div>
             <SideBar sub={sub} />
           </div>
         </Fragment>
