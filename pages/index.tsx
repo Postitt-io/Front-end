@@ -74,7 +74,7 @@ export default function IndexPage() {
             <p className="text-lg text-center text-gray-900 dark:text-gray-100">Loading...</p>
           )}
           {posts?.map((post) => (
-            <PostCard post={post} key={post.identifier} revalidate={revalidate} />
+            <PostCard post={post} revalidate={revalidate} key={post.identifier} />
           ))}
           {isValidating && posts.length > 0 && (
             <p className="text-lg text-center text-gray-900 dark:text-gray-100">

@@ -33,9 +33,9 @@ export default function PostCard({
   },
   revalidate,
 }: PostCardProps) {
+  const { authenticated } = useAuthState();
   const router = useRouter();
   const isInSubPage = router.pathname === '/p/[sub]';
-  const { authenticated } = useAuthState();
 
   const vote = async (value: number) => {
     if (!authenticated) router.push('/login');
@@ -125,7 +125,10 @@ export default function PostCard({
             <a>
               <ActionButton>
                 <i className="mr-1 fas fa-comment-alt fa-xs"></i>
-                <span className="font-semibold">{commentCount} comments</span>
+                <span className="font-semibold">
+                  {commentCount}
+                  {commentCount === 1 ? ' comment' : ' comments'}
+                </span>
               </ActionButton>
             </a>
           </Link>
