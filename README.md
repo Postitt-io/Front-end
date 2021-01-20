@@ -7,6 +7,7 @@ This is an example of how to set up the dev environment to work on Postitt.
 ## Setting up environment variables:
 
 At the moment, there are 2 `.env` files for both repositories.
+
 ### Back End
 
 | Syntax     | Value                   |
@@ -18,13 +19,13 @@ At the moment, there are 2 `.env` files for both repositories.
 | ORIGIN     | `http://localhost:3000` |
 
 ---
-### Front End 
+
+### Front End
+
 | Syntax                      | Value                   |
-| ---------- -----------------| ----------------------- |
+| --------------------------- | ----------------------- |
 | NEXT_PUBLIC_SERVER_BASE_URL | "http://localhost:5000" |
 | NEXT_PUBLIC_CLIENT_BASE_URL | "http://localhost:5000" |
-
-
 
 ## Connecting the server to your local Postgres instance:
 
