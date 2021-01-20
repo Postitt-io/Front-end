@@ -7,8 +7,9 @@ import { AuthProvider } from '../context/auth';
 
 import '../styles/index.css';
 import Nav from '../components/nav';
+import Head from 'next/head';
 
-Axios.defaults.baseURL = 'http://localhost:5000/api';
+Axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_BASE_URL + '/api';
 Axios.defaults.withCredentials = true;
 
 const fetcher = async (url: string) => {
@@ -32,6 +33,9 @@ function App({ Component, pageProps }: AppProps) {
         dedupingInterval: 10000,
       }}
     >
+      <Head>
+        <title>Postitt.io</title>
+      </Head>
       <AuthProvider>
         {!authRoute && <Nav />}
         <div className={authRoute ? '' : ''}>
