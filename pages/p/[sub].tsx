@@ -9,6 +9,7 @@ import { useAuthState } from '../../context/auth';
 import classNames from 'classnames';
 import Axios from 'axios';
 import SideBar from '../../components/SideBar';
+import Link from 'next/link';
 
 export default function SubPage() {
   //local state
@@ -53,12 +54,12 @@ export default function SubPage() {
   if (error) {
     return (
       <Fragment>
-        <div className="container flex pt-5 text-center bg-gray-200 rounded">
-          <div className="w-160">
-            <p className="text-lg">Sub not found...</p>
-            <small className="font-light text-gray-600 clear-left text-md dark:text-gray-100">
-              Why don't you create it?
-            </small>
+        <div className="container p-3 mt-3 text-center bg-gray-200 rounded shadow-md justify-items-center w-160">
+          <p className="text-lg">Board not found...</p>
+          <div className="p-4 border-t-2">
+            <Link href="/boards/create">
+              <a className="px-4 py-1 text-sm btn-postitt">Why don't you create it?</a>
+            </Link>
           </div>
         </div>
       </Fragment>
