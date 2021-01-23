@@ -8,7 +8,7 @@ export default function SideBar({ sub }: { sub: Sub }) {
   const { authenticated } = useAuthState();
   return (
     <div className="hidden ml-6 md:block w-80">
-      <div className="bg-white rounded">
+      <div className="bg-white rounded shadow-md">
         <div className="p-3 rounded-t bg-button-blue">
           <p className="font-semibold text-white">About Board</p>
         </div>
@@ -32,9 +32,7 @@ export default function SideBar({ sub }: { sub: Sub }) {
           </p>
           {authenticated && (
             <Link href={`/p/${sub.name}/submit`}>
-              <a className="w-full py-1 text-sm font-medium btn-postitt">
-                Create Post
-              </a>
+              <a className="w-full py-1 text-sm font-medium btn-postitt">Create Post</a>
             </Link>
           )}
         </div>
