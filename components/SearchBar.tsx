@@ -3,14 +3,11 @@ import { Sub } from '../types';
 import Axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 export default function SearchBar() {
   const [subs, setSubs] = useState<Sub[]>([]);
   const [name, setName] = useState('');
   const [timer, setTimer] = useState(null);
-
-  const router = useRouter();
 
   useEffect(() => {
     if (name.trim() === '') {
