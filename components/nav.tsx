@@ -37,7 +37,7 @@ const Nav: React.FC = (): JSX.Element => {
       <div className="flex items-center justify-between p-3">
         <Link href="/">
           <a className="hidden cursor-pointer sm:block">
-            <Image src={logoSource} width={250} height={66} />
+            <Image src={logoSource} width={140} height={40} />
           </a>
         </Link>
         <SearchBar />
