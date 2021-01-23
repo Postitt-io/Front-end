@@ -84,11 +84,7 @@ export default function IndexPage() {
           {posts?.map((post) => (
             <PostCard post={post} revalidate={revalidate} key={post.identifier} />
           ))}
-          {isValidating && posts.length > 0 && (
-            <p className="text-lg text-center text-gray-900 dark:text-gray-100">
-              Loading more posts...
-            </p>
-          )}
+          {isValidating && posts.length > 0 && <SkeletonPost />}
         </div>
         {/* Sidebar */}
         <div className="hidden ml-6 md:block w-80">
