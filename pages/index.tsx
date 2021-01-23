@@ -12,6 +12,7 @@ import { Post, Sub } from '../types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuthState } from '../context/auth';
+import SkeletonPost from '../components/SkeletonPost';
 
 dayjs.extend(relativeTime);
 
@@ -56,6 +57,15 @@ export default function IndexPage() {
     observer.observe(element);
   };
 
+  const SkeletonPost8Times = () => {
+    let content = [];
+    let i = 0;
+    for (i = 0; i < 8; i++) {
+      content.push(<SkeletonPost key={i} />);
+    }
+    return content;
+  };
+
   return (
     <Fragment>
       <Head>
@@ -70,9 +80,7 @@ export default function IndexPage() {
       <div className="container flex pt-4">
         {/* Posts Feed */}
         <div className="w-full px-4 md:w-160 md:p-0">
-          {isInitialLoading && (
-            <p className="text-lg text-center text-gray-900 dark:text-gray-100">Loading...</p>
-          )}
+          {isInitialLoading && SkeletonPost8Times()}
           {posts?.map((post) => (
             <PostCard post={post} revalidate={revalidate} key={post.identifier} />
           ))}
