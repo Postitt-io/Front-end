@@ -27,7 +27,7 @@ At the moment, there are 2 `.env` files for both repositories.
 | Syntax                      | Value                   |
 | --------------------------- | ----------------------- |
 | NEXT_PUBLIC_SERVER_BASE_URL | `http://localhost:5000` |
-| NEXT_PUBLIC_CLIENT_BASE_URL | `http://localhost:5000` |
+| NEXT_PUBLIC_CLIENT_BASE_URL | `http://localhost:3000` |
 
 ---
 
