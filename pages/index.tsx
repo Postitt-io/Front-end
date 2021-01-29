@@ -26,7 +26,7 @@ export default function IndexPage() {
 
   const { data, error, size: page, setSize: setPage, isValidating, revalidate } = useSWRInfinite<
     Post[]
-  >((index) => `/posts?page=${index}`);
+  >((index) => `/posts?page=${index}`, { revalidateAll: true });
 
   const { data: topSubs } = useSWR<Sub[]>('/misc/top-subs');
 
