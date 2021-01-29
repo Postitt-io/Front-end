@@ -7,6 +7,7 @@ import Axios from 'axios';
 
 import InputGroup from '../components/inputGroup';
 import { useAuthState } from '../context/auth';
+import Image from 'next/image';
 
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -47,8 +48,11 @@ export default function RegisterPage() {
       <Head>
         <title>Register</title>
       </Head>
-      <div className="container flex items-center justify-center h-full mx-auto">
-        <section className="py-20">
+      <div className="container flex items-center h-full">
+        <div className="w-1/2 h-full mr-10 bg-gray-800 rounded shadow-inner">
+          <Image src={'/newsletter.png'} width={500} height={350} />
+        </div>
+        <section className="w-1/2 py-20">
           <h1 className="text-5xl font-semibold text-gray-900 dark:text-gray-100">
             Sign Up to <u>Post</u>itt
           </h1>
@@ -117,9 +121,7 @@ export default function RegisterPage() {
             >
               I agree to get emails about cool stuff on Postitt
             </label>
-            <small className="block font-medium text-red-600">
-              {errors.agreement}
-            </small>
+            <small className="block font-medium text-red-600">{errors.agreement}</small>
             <button type="submit" className="w-full my-3 btn-postitt">
               Create Account
             </button>

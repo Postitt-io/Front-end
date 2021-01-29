@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "classnames": "2.2.6",
     "dayjs": "1.10.4",
+    "lottie-web": "^5.7.6",
     "next": "latest",
     "postcss-flexbugs-fixes": "5.0.2",
     "postcss-preset-env": "6.7.0",
