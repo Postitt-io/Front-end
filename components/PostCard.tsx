@@ -85,7 +85,6 @@ export default function PostCard({
         </div>
       </div>
       {/* Post data section */}
-
       <div className="w-full p-2">
         <div className="flex items-center">
           {/* Sub  Icon */}
