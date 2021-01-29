@@ -48,47 +48,57 @@ export default function RegisterPage() {
       <Head>
         <title>Register</title>
       </Head>
-      <div className="container flex items-center h-full">
-        <div className="w-1/2 h-full mr-10 bg-gray-800 rounded shadow-inner">
-          <Image src={'/newsletter.png'} width={500} height={350} />
-        </div>
-        <section className="w-1/2 py-20">
-          <h1 className="text-5xl font-semibold text-gray-900 dark:text-gray-100">
-            Sign Up to <u>Post</u>itt
-          </h1>
-          <small className="text-lg font-light text-gray-600 clear-left dark:text-gray-100">
-            Already have an account?
-            <Link href="/login">
-              <a className="ml-1 text-blue-400 ">Log In</a>
-            </Link>
-          </small>
-          <form onSubmit={submitForm}>
-            <InputGroup
-              className="my-4"
-              type="text"
-              value={username}
-              setValue={setUsername}
-              placeholder="Username"
-              error={errors.username}
-            />
-            <InputGroup
-              className="my-4"
-              type="email"
-              value={email}
-              setValue={setEmail}
-              placeholder="Email"
-              error={errors.email}
-            />
-            <InputGroup
-              className="relative flex flex-wrap items-stretch w-full mb-8"
-              type="password"
-              value={password}
-              setValue={setPassword}
-              placeholder="Password"
-              error={errors.password}
-            />
+      <div
+        className="h-screen bg-center bg-cover"
+        style={{
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_CLIENT_BASE_URL}/register-bg.jpg)`,
+        }}
+      >
+        <div className="container flex">
+          <div
+            className="flex items-center px-4 pt-1 mt-10 bg-white rounded-lg bg-opacity-20"
+            style={{ backdropFilter: 'blur(5px)' }} // note blur does not work on firefox
+          >
+            <div className="w-1/2 mr-10">
+              <Image src={'/newsletter.png'} width={500} height={350} />
+            </div>
+            <section className="w-1/2 py-20">
+              <h1 className="text-5xl font-semibold text-gray-900 dark:text-gray-100">
+                Sign Up to <u>Post</u>itt
+              </h1>
+              <small className="text-lg font-light text-gray-600 clear-left dark:text-gray-100">
+                Already have an account?
+                <Link href="/login">
+                  <a className="ml-1 text-blue-400 ">Log In</a>
+                </Link>
+              </small>
+              <form onSubmit={submitForm}>
+                <InputGroup
+                  className="my-4"
+                  type="text"
+                  value={username}
+                  setValue={setUsername}
+                  placeholder="Username"
+                  error={errors.username}
+                />
+                <InputGroup
+                  className="my-4"
+                  type="email"
+                  value={email}
+                  setValue={setEmail}
+                  placeholder="Email"
+                  error={errors.email}
+                />
+                <InputGroup
+                  className="relative flex flex-wrap items-stretch w-full mb-8"
+                  type="password"
+                  value={password}
+                  setValue={setPassword}
+                  placeholder="Password"
+                  error={errors.password}
+                />
 
-            {/* <div className="relative flex flex-wrap items-stretch w-full mb-8">
+                {/* <div className="relative flex flex-wrap items-stretch w-full mb-8">
               <input
                 id="password"
                 type="password"
@@ -108,25 +118,27 @@ export default function RegisterPage() {
               {errors.password} 
              </small> */}
 
-            <input
-              type="checkbox"
-              className="mr-1 cursor-pointer"
-              id="agreement"
-              checked={agreement}
-              onChange={(e) => setAgreement(e.target.checked)}
-            />
-            <label
-              htmlFor="agreement"
-              className="text-xs font-light text-gray-600 cursor-pointer clear-left dark:text-gray-100"
-            >
-              I agree to get emails about cool stuff on Postitt
-            </label>
-            <small className="block font-medium text-red-600">{errors.agreement}</small>
-            <button type="submit" className="w-full my-3 btn-postitt">
-              Create Account
-            </button>
-          </form>
-        </section>
+                <input
+                  type="checkbox"
+                  className="mr-1 cursor-pointer"
+                  id="agreement"
+                  checked={agreement}
+                  onChange={(e) => setAgreement(e.target.checked)}
+                />
+                <label
+                  htmlFor="agreement"
+                  className="text-xs font-light text-gray-600 cursor-pointer clear-left dark:text-gray-100"
+                >
+                  I agree to get emails about cool stuff on Postitt
+                </label>
+                <small className="block font-medium text-red-600">{errors.agreement}</small>
+                <button type="submit" className="w-full my-3 btn-postitt">
+                  Create Account
+                </button>
+              </form>
+            </section>
+          </div>
+        </div>
       </div>
     </div>
   );
