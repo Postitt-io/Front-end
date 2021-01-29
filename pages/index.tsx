@@ -101,8 +101,8 @@ export default function IndexPage() {
                         src={sub.imageUrl}
                         alt={sub.name}
                         className="overflow-hidden rounded-full cursor-pointer"
-                        width={(6 * 16) / 4}
-                        height={(6 * 16) / 4}
+                        width={24}
+                        height={24}
                       />
                     </a>
                   </Link>
