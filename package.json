@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "server": "cd ../Back-end/ && ts-node src/server.ts",
-    "client": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "client": "next dev",
     "dev": "concurrently \"npm run server\" \"npm run client\" -n server,client",
     "build": "next build",
     "start": "next start"

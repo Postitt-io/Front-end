@@ -59,7 +59,7 @@ export default function RegisterPage() {
             className="flex items-center px-4 pt-1 mt-10 bg-white rounded-lg bg-opacity-20"
             style={{ backdropFilter: 'blur(5px)' }} // note blur does not work on firefox
           >
-            <div className="w-1/2 mr-10">
+            <div className="flex flex-row items-center w-1/2 mx-6 bg-gray-800 rounded-lg shadow-lg">
               <Image src={'/newsletter.png'} width={500} height={350} />
             </div>
             <section className="w-1/2 py-20">
