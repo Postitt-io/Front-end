@@ -8,16 +8,15 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Rebild Server
+      - name: Rebild Client with latest from Main
         uses: garygrossgarten/github-action-ssh@release
         with:
           command: |
-            cd postitt.io
+            cd postitt.io/Front-end
             git pull
             npm i
-            npx tsc
             npm run build
-            pm2 restart server client
+            pm2 restart client
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           privateKey: ${{ secrets.PRIVATE_KEY}}
