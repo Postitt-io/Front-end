@@ -54,16 +54,16 @@ export default function RegisterPage() {
           backgroundImage: `url(${process.env.NEXT_PUBLIC_CLIENT_BASE_URL}/register-bg.jpg)`,
         }}
       >
-        <div className="container flex">
+        <div className="container flex items-center justify-center">
           <div
-            className="flex items-center px-4 pt-1 mt-10 bg-white rounded-lg bg-opacity-20"
+            className="flex items-center w-full mx-8 mt-3 bg-white bg-opacity-50 rounded-lg lg:mx-4 sm:mt-10 sm:px-2 sm:bg-opacity-10"
             style={{ backdropFilter: 'blur(5px)' }} // note blur does not work on firefox
           >
-            <div className="flex flex-row items-center w-1/2 mx-6 bg-gray-800 rounded-lg shadow-lg">
+            <div className="flex-row items-center hidden w-1/2 mx-6 bg-gray-800 rounded-lg shadow-lg sm:block">
               <Image src={'/newsletter.png'} width={500} height={350} />
             </div>
-            <section className="w-1/2 py-20">
-              <h1 className="text-5xl font-semibold text-gray-900 dark:text-gray-100">
+            <section className="w-full py-5 mx-4 my-5 rounded-lg sm:bg-gray-100 sm:mr-4 sm:px-5 lg:my-10 lg:py-10 sm:dark:bg-gray-800 sm:w-1/2">
+              <h1 className="text-2xl font-semibold text-gray-900 md:text-4xl dark:text-gray-100">
                 Sign Up to <u>Post</u>itt
               </h1>
               <small className="text-lg font-light text-gray-600 clear-left dark:text-gray-100">
