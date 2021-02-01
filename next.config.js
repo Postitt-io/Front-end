@@ -1,3 +1,5 @@
+const APP_DOMAIN = process.env.APP_DOMAIN || 'localhost';
+
 module.exports = {
   webpack(config) {
     config.module.rules.push({
@@ -11,6 +13,6 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ['www.gravatar.com', process.env.APP_DOMAIN],
+    domains: ['www.gravatar.com', APP_DOMAIN],
   },
 };
