@@ -71,24 +71,8 @@ export default function LoginPage() {
               setValue={setPassword}
               placeholder="Password"
               error={errors.password}
+              password
             />
-            {/* TODO: #34 Make the password input have the eye icon span */}
-            {/* <div className="relative flex flex-wrap items-stretch w-full mb-8">
-              <input
-                id="password"
-                type="password"
-                name="password"
-                className={classNames('input-postitt', {
-                  'border-red-500': errors.password,
-                })}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <span className="absolute right-0 z-10 items-center justify-center w-8 h-full py-3 pr-3 text-base font-normal leading-snug text-center text-gray-400 bg-transparent">
-                <i className="far fa-eye-slash"></i>
-              </span>
-            </div> */}
             <button type="submit" className="w-full my-3 btn-postitt">
               Login
             </button>

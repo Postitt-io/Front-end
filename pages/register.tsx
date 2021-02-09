@@ -96,28 +96,8 @@ export default function RegisterPage() {
                   setValue={setPassword}
                   placeholder="Password"
                   error={errors.password}
+                  password
                 />
-
-                {/* <div className="relative flex flex-wrap items-stretch w-full mb-8">
-              <input
-                id="password"
-                type="password"
-                name="password"
-                className={classNames('input-postitt', {
-                  'border-red-500': errors.password,
-                })}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <span className="absolute right-0 z-10 items-center justify-center w-8 h-full py-3 pr-3 text-base font-normal leading-snug text-center text-gray-400 bg-transparent">
-                <i className="far fa-eye-slash"></i>
-              </span>
-            </div>
-            <small className="font-medium text-red-600">
-              {errors.password} 
-             </small> */}
-
                 <input
                   type="checkbox"
                   className="mr-1 cursor-pointer"
