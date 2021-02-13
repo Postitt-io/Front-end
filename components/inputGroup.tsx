@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 interface InputGroupProps {
   className?: string;
@@ -22,7 +22,10 @@ const InputGroup: React.FC<InputGroupProps> = ({
 }) => {
   const [hiddenPassword, setHiddenPassword] = useState(true);
 
-  const toggleHidden = () => setHiddenPassword(!hiddenPassword);
+  const toggleHidden = useCallback(
+    () => setHiddenPassword((hiddenPassword) => !hiddenPassword),
+    [],
+  );
 
   return (
     <div className={className}>
