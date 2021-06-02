@@ -34,6 +34,7 @@ class MyDocument extends Document {
           ></meta>
           <meta property="twitter:card" content="summary"></meta>
           {/* <meta property="twitter:site" content="@Postitt"></meta> */}
+          <script async defer data-domain="postitt.io" src="https://stats.nathanmayall.com/js/plausible.js"></script>
         </Head>
         <body className="font-body">
           <Main />
