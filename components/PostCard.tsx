@@ -1,13 +1,14 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import Axios from 'axios';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import classNames from 'classnames';
 
+import { useRouter } from 'next/router';
 import { Post } from '../types';
 import ActionButton from './ActionButton';
 import { useAuthState } from '../context/auth';
-import { useRouter } from 'next/router';
 
 dayjs.extend(relativeTime);
 
@@ -90,8 +91,14 @@ export default function PostCard({
           {/* Sub  Icon */}
           {!isInSubPage && (
             <>
-              <Link href={`/p/${subName}`}>
-                <img src={sub.imageUrl} className="w-6 h-6 mr-1 rounded-full cursor-pointer" />
+              <Link href={`/p/${subName}`} passHref>
+                <Image
+                  height={24}
+                  width={24}
+                  src={sub.imageUrl}
+                  className="w-6 h-6 mr-1 rounded-full cursor-pointer"
+                  alt=""
+                />
               </Link>
               {/* Sub Name */}
               <Link href={`/p/${subName}`}>

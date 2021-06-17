@@ -5,9 +5,9 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Axios from 'axios';
 
+import Image from 'next/image';
 import InputGroup from '../components/inputGroup';
 import { useAuthState } from '../context/auth';
-import Image from 'next/image';
 
 export default function RegisterPage() {
   const [username, setUsername] = useState('');
@@ -60,7 +60,7 @@ export default function RegisterPage() {
             style={{ backdropFilter: 'blur(5px)' }} // note blur does not work on firefox
           >
             <div className="flex-row items-center hidden w-1/2 mx-6 bg-gray-800 rounded-lg shadow-lg sm:block">
-              <Image src={'/newsletter.png'} width={500} height={350} />
+              <Image src={'/newsletter.png'} alt="" width={500} height={350} />
             </div>
             <section className="w-full py-5 mx-4 my-5 rounded-lg sm:bg-gray-100 sm:mr-4 sm:px-5 lg:my-10 lg:py-10 sm:dark:bg-gray-800 sm:w-1/2">
               <h1 className="text-2xl font-semibold text-gray-900 md:text-4xl dark:text-gray-100">

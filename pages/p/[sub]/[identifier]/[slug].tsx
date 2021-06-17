@@ -3,16 +3,16 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import SideBar from '../../../../components/SideBar';
-import ActionButton from '../../../../components/ActionButton';
 
 import classNames from 'classnames';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { Post, Comment } from '../../../../types';
 import Axios from 'axios';
-import { useAuthState } from '../../../../context/auth';
 import { FormEvent, useState, useEffect } from 'react';
+import { Post, Comment } from '../../../../types';
+import { useAuthState } from '../../../../context/auth';
+import ActionButton from '../../../../components/ActionButton';
+import SideBar from '../../../../components/SideBar';
 
 dayjs.extend(relativeTime);
 
@@ -20,10 +20,10 @@ export default function PostPage() {
   // Local State
   const [newComment, setnewComment] = useState('');
   const [description, setDescription] = useState('');
-  //Global State
+  // Global State
   const { authenticated, user } = useAuthState();
 
-  //Utils
+  // Utils
   const router = useRouter();
   const { identifier, sub, slug } = router.query;
 
@@ -48,7 +48,7 @@ export default function PostPage() {
     // If not logged in, go to login
     if (!authenticated) router.push('/login');
 
-    //If vote is the same, reset vote
+    // If vote is the same, reset vote
     if ((!comment && value === post.userVote) || (comment && comment.userVote === value)) value = 0;
 
     try {
@@ -96,7 +96,12 @@ export default function PostPage() {
             <div className="container flex">
               {post && (
                 <div className="w-8 h-8 mr-2 overflow-hidden rounded-full">
-                  <Image src={post.sub.imageUrl} height={(8 * 16) / 4} width={(8 * 16) / 4} />
+                  <Image
+                    src={post.sub.imageUrl}
+                    alt={`${post.sub.name} image`}
+                    height={(8 * 16) / 4}
+                    width={(8 * 16) / 4}
+                  />
                 </div>
               )}
               <p className="text-xl font-semibold text-gray-200">p/{sub}</p>

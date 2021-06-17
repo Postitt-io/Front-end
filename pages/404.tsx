@@ -1,7 +1,8 @@
-// import Image from 'next/image';
 import Link from 'next/link';
 import lottie from 'lottie-web';
 import { useEffect, useRef } from 'react';
+
+import Astronaut from '../public/astronaout.json';
 
 export default function NotFound() {
   const container = useRef(null);
@@ -12,12 +13,11 @@ export default function NotFound() {
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      animationData: require('../public/astronaout.json'),
+      animationData: Astronaut,
     });
   }, []);
 
   return (
-    // TODO: #25 Make this look nice
     <div
       className="h-screen bg-center bg-cover"
       style={{

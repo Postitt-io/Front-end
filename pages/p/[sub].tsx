@@ -2,21 +2,21 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ChangeEvent, createRef, Fragment, useEffect, useState } from 'react';
 import useSWR from 'swr';
-import PostCard from '../../components/PostCard';
-import { Sub } from '../../types';
 import Image from 'next/image';
-import { useAuthState } from '../../context/auth';
 import classNames from 'classnames';
 import Axios from 'axios';
-import SideBar from '../../components/SideBar';
 import Link from 'next/link';
+import PostCard from '../../components/PostCard';
+import { Sub } from '../../types';
+import { useAuthState } from '../../context/auth';
+import SideBar from '../../components/SideBar';
 
 export default function SubPage() {
-  //local state
+  // local state
   const [ownSub, setOwnSub] = useState(false);
-  //global state
+  // global state
   const { authenticated, user } = useAuthState();
-  //utils
+  // utils
 
   const router = useRouter();
   const fileInputRef = createRef<HTMLInputElement>();
@@ -58,7 +58,7 @@ export default function SubPage() {
           <p className="text-lg">Board not found...</p>
           <div className="p-4 border-t-2">
             <Link href="/boards/create">
-              <a className="px-4 py-1 text-sm btn-postitt">Why don't you create it?</a>
+              <a className="px-4 py-1 text-sm btn-postitt">Why {"don't"} you create it?</a>
             </Link>
           </div>
         </div>

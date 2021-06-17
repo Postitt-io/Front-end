@@ -34,8 +34,17 @@ class MyDocument extends Document {
           ></meta>
           <meta property="twitter:card" content="summary"></meta>
           {/* <meta property="twitter:site" content="@Postitt"></meta> */}
-          <script async defer data-domain="postitt.io" src="https://stats.nathanmayall.com/js/plausible.js"></script>
-          <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d1af93bf3d4145cc8a9077c47e08ab7a"}'></script>
+          <script
+            async
+            defer
+            data-domain="postitt.io"
+            src="https://stats.nathanmayall.com/js/plausible.js"
+          ></script>
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon='{"token": "d1af93bf3d4145cc8a9077c47e08ab7a"}'
+          ></script>
         </Head>
         <body className="font-body">
           <Main />

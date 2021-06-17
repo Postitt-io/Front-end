@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Sub } from '../types';
 import Axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Sub } from '../types';
 
 export default function SearchBar() {
   const [subs, setSubs] = useState<Sub[]>([]);
@@ -47,7 +47,7 @@ export default function SearchBar() {
         <div className="absolute left-0 right-0 bg-white" style={{ top: '100%' }}>
           {subs?.map(
             (sub): JSX.Element => (
-              <Link href={`/p/${sub.name}`}>
+              <Link href={`/p/${sub.name}`} passHref key={sub.name}>
                 <div
                   className="flex items-center px-4 py-3 cursor-pointer hover:bg-gray-200"
                   onClick={() => setName('')}

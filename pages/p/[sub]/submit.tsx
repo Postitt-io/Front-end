@@ -7,15 +7,13 @@ import useSWR from 'swr';
 import SideBar from '../../../components/SideBar';
 import { Post, Sub } from '../../../types';
 
-export default function submit() {
+export default function Submit() {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const router = useRouter();
   const { sub: subName } = router.query;
 
-  const { data: sub, error } = useSWR<Sub>(
-    subName ? `/subs/${subName}` : null,
-  );
+  const { data: sub, error } = useSWR<Sub>(subName ? `/subs/${subName}` : null);
   if (error) router.push(`/`);
 
   const submitPost = async (event: FormEvent) => {
@@ -41,9 +39,7 @@ export default function submit() {
       </Head>
       <div className="w-160">
         <div className="p-4 bg-white rounded">
-          <h1 className="mb-3 text-lg">
-            Submit a post to p/{subName}
-          </h1>
+          <h1 className="mb-3 text-lg">Submit a post to p/{subName}</h1>
           <form onSubmit={submitPost} onChange={null}>
             <div className="relative mb-2">
               <input
@@ -85,12 +81,9 @@ export default function submit() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  req,
-  res,
-}) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   try {
-    const cookie = req.headers.cookie;
+    const { cookie } = req.headers;
     if (!cookie) throw new Error('Missing auth token cookie');
 
     await Axios.get('/auth/me', { headers: { cookie } });

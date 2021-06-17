@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { FormEvent, useState } from 'react';
 import InputGroup from '../../components/inputGroup';
 
-export default function create() {
+export default function Create() {
   const [name, setName] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -37,16 +37,12 @@ export default function create() {
       </Head>
       <div className="flex flex-col justify-center pl-6 text-gray-900 dark:text-gray-100">
         <div className="w-98">
-          <h1 className="mb-2 text-2xl font-medium">
-            Create a Board
-          </h1>
+          <h1 className="mb-2 text-2xl font-medium">Create a Board</h1>
           <hr />
           <form onSubmit={submitForm}>
             <div className="w-full">
               <p className="text-lg font-medium">Name</p>
-              <p className="mb-2 text-xs text-gray-500">
-                Careful! This can't be changed.
-              </p>
+              <p className="mb-2 text-xs text-gray-500">Careful! This cannot be changed.</p>
               <InputGroup
                 className="mb-2"
                 type="text"
@@ -57,8 +53,7 @@ export default function create() {
               />
               <p className="text-lg font-medium">Title</p>
               <p className="mb-2 text-xs text-gray-500">
-                This represents the topic of your Board and can be
-                changed at any time.
+                This represents the topic of your Board and can be changed at any time.
               </p>
               <InputGroup
                 className="mb-2"
@@ -70,8 +65,7 @@ export default function create() {
               />
               <p className="text-lg font-medium">Description</p>
               <p className="mb-2 text-xs text-gray-500">
-                Give members insight into the rules/information on
-                what your Board is about.
+                Give members insight into the rules/information on what your Board is about.
               </p>
               <textarea
                 className="input-postitt"
@@ -79,14 +73,10 @@ export default function create() {
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Description"
               />
-              <small className="font-medium text-red-600">
-                {errors.description}
-              </small>
+              <small className="font-medium text-red-600">{errors.description}</small>
             </div>
             <div className="flex justify-end">
-              <button className="my-2 font-medium text-md btn-postitt">
-                Create Board
-              </button>
+              <button className="my-2 font-medium text-md btn-postitt">Create Board</button>
             </div>
           </form>
         </div>
@@ -95,12 +85,9 @@ export default function create() {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  req,
-  res,
-}) => {
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   try {
-    const cookie = req.headers.cookie;
+    const { cookie } = req.headers;
     if (!cookie) throw new Error('Missing auth token cookie');
 
     await Axios.get('/auth/me', { headers: { cookie } });

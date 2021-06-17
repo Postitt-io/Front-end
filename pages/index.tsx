@@ -7,10 +7,10 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 // import { GetServerSideProps } from 'next';
 
 import { Fragment, useEffect, useState } from 'react';
-import PostCard from '../components/PostCard';
-import { Post, Sub } from '../types';
 import Image from 'next/image';
 import Link from 'next/link';
+import PostCard from '../components/PostCard';
+import { Post, Sub } from '../types';
 import { useAuthState } from '../context/auth';
 import SkeletonPost from '../components/SkeletonPost';
 
@@ -58,7 +58,7 @@ export default function IndexPage() {
   };
 
   const SkeletonPost8Times = () => {
-    let content = [];
+    const content = [];
     let i = 0;
     for (i = 0; i < 8; i++) {
       content.push(<SkeletonPost key={i} />);

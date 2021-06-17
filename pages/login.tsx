@@ -50,7 +50,7 @@ export default function LoginPage() {
             Login to <u>Post</u>itt
           </h1>
           <small className="text-lg font-light text-gray-600 clear-left dark:text-gray-100">
-            Don't have an account?
+            {"Don't"} have an account?
             <Link href="/register">
               <a className="ml-1 text-blue-400 ">Register</a>
             </Link>

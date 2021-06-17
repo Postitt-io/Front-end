@@ -1,8 +1,8 @@
 import dayjs from 'dayjs';
 
+import Link from 'next/link';
 import { Sub } from '../types';
 import { useAuthState } from '../context/auth';
-import Link from 'next/link';
 
 export default function SideBar({ sub }: { sub: Sub }) {
   const { authenticated } = useAuthState();

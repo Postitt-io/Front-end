@@ -37,7 +37,7 @@ const Nav: React.FC = (): JSX.Element => {
       <div className="flex items-center justify-between p-3">
         <Link href="/">
           <a className="hidden cursor-pointer sm:block">
-            <Image src={logoSource} width={140} height={40} />
+            <Image src={logoSource} alt="" width={140} height={40} />
           </a>
         </Link>
         <SearchBar />
@@ -45,7 +45,7 @@ const Nav: React.FC = (): JSX.Element => {
         <div className="flex items-center justify-between px-2 space-x-4 ">
           {!loading &&
             (authenticated ? (
-              //show logout button
+              // show logout button
               <button
                 className="hidden w-20 py-1 text-sm text-center lg:w-32 lg:text-lg btn-postitt sm:block"
                 onClick={logout}
